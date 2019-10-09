@@ -11,6 +11,19 @@
   "auto_advance_duration_millis": 500,
   "slides": [
     {
+      "bg_color": "#FFFFFFFF",
+      "content": [
+        {
+          "type": "video",
+          "x": 0.0,
+          "y": 0.0,
+          "height": 1080.0,
+          "width": 1920.0,
+          "file": "videos/lion-sample.mp4"
+        }
+      ]
+    },
+    {
       "bg_color": "#FFFFFFff",
       "content": [
         {

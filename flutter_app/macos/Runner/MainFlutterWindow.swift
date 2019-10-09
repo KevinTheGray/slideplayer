@@ -14,11 +14,18 @@
 
 import Cocoa
 import FlutterMacOS
+import FirebaseDatabase
+import FirebaseCore
 
 class MainFlutterWindow: NSWindow {
   override func awakeFromNib() {
     minSize.width = 400.0
     minSize.height = 400.0
+    FirebaseApp.configure()
+    Database.database().reference().observeSingleEvent(of: .value) { (snapshot) in
+      print(snapshot.exists())
+      print(snapshot.value!)
+    }
     
     let flutterViewController = FlutterViewController.init()
     let windowFrame = self.frame
