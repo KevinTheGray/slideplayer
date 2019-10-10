@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_slides/models/slides.dart';
 import 'package:flutter_slides/slides/slide_presentation.dart';
 import 'package:flutter/foundation.dart'
@@ -36,6 +37,9 @@ void main() {
 class _MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    FirebaseDatabase.instance.reference().onValue.listen((event) {
+      print(event.snapshot.value);
+    });
     return ScopedModel<FlutterSlidesModel>(
       model: loadedSlides,
       child: MaterialApp(

@@ -21,18 +21,14 @@ class MainFlutterWindow: NSWindow {
   override func awakeFromNib() {
     minSize.width = 400.0
     minSize.height = 400.0
-    FirebaseApp.configure()
-    Database.database().reference().observeSingleEvent(of: .value) { (snapshot) in
-      print(snapshot.exists())
-      print(snapshot.value!)
-    }
-    
+
     let flutterViewController = FlutterViewController.init()
     let windowFrame = self.frame
     self.contentViewController = flutterViewController
     self.setFrame(windowFrame, display: true)
 
     RegisterGeneratedPlugins(registry: flutterViewController)
+    FLTFirebaseDatabasePlugin.register(with: flutterViewController.registrar(forPlugin: "FirebaseDatabasePlugin"))
     super.awakeFromNib()
   }
 }
