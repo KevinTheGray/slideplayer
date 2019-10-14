@@ -95,6 +95,9 @@ class _SlidePresentationState extends State<SlidePresentation>
           if (model.slides == null) {
             return LoadPresentationScreen();
           }
+          if (_currentSlideIndex >= model.slides.length) {
+            _currentSlideIndex = 0;
+          }
           bool animatedTransition =
               model.slides[_currentSlideIndex].animatedTransition ||
                   model.animateSlideTransitions;
