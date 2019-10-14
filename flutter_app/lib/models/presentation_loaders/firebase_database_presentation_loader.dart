@@ -28,7 +28,7 @@ class FirebaseDatabasePresentationLoader extends PresentationLoader {
   String get presentationID => databaseID;
 
   @override
-  String get typeID => 'file_system';
+  String get typeID => 'firebase_database';
 
   @override
   void load() {

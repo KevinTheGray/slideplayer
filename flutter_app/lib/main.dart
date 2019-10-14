@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_slides/models/slides.dart';
 import 'package:flutter_slides/slides/slide_presentation.dart';
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride, kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_slides/workspace/load_presentation_screen.dart';
 
 import 'package:menubar/menubar.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -20,17 +20,6 @@ void _enablePlatformOverrideForDesktop() {
 
 void main() {
   _enablePlatformOverrideForDesktop();
-  WidgetsFlutterBinding.ensureInitialized();
-  setApplicationMenu([
-    Submenu(label: 'File', children: [
-      MenuItem(
-        label: 'Open',
-        onClicked: () {
-          loadSlideDataFromFileChooser();
-        },
-      ),
-    ]),
-  ]);
   runApp(_MyApp());
 }
 
@@ -43,7 +32,10 @@ class _MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'GoogleSans',
         ),
-        home: SlidePresentation(),
+        routes: {
+          '/': (context) => SlidePresentation(),
+          '/load_new_presentation': (context) => LoadPresentationScreen(),
+        },
       ),
     );
   }

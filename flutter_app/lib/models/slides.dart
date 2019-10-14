@@ -20,24 +20,31 @@ const _RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY =
 void loadSlideDataFromFileChooser() {
   file_chooser.showOpenPanel((result, paths) {
     if (paths != null) {
-      _loadPresentation(FileSystemPresentationLoader(paths.first));
+      loadPresentation(FileSystemPresentationLoader(paths.first));
     }
   }, allowsMultipleSelection: false);
 }
 
 void loadRecentlyOpenedSlideData() {
+  // todo (kg) - clean everything about this up.
   SharedPreferences.getInstance().then(
     (prefs) {
-      String filePath =
+      String type = prefs.getString(_RECENTLY_OPENED_FILE_PREFS_TYPE_ID_KEY);
+      String presentationID =
           prefs.getString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY);
-      if (filePath != null) {
-        _loadPresentation(FileSystemPresentationLoader(filePath));
+      if (presentationID == null) {
+        return;
+      }
+      if (type == FileSystemPresentationLoader(null).typeID) {
+        loadPresentation(FileSystemPresentationLoader(presentationID));
+      } else if (type == FirebaseDatabasePresentationLoader(null).typeID) {
+        loadPresentation(FirebaseDatabasePresentationLoader(presentationID));
       }
     },
   );
 }
 
-void _loadPresentation(PresentationLoader presentationLoader) {
+void loadPresentation(PresentationLoader presentationLoader) {
   loadedSlides.loadPresentation(presentationLoader);
 }
 

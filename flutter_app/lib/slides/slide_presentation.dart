@@ -5,6 +5,8 @@ import 'package:flutter_slides/slides/slide_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slides/workspace/load_presentation_screen.dart';
+import 'package:menubar/menubar.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SlidePresentation extends StatefulWidget {
@@ -41,6 +43,20 @@ class _SlidePresentationState extends State<SlidePresentation>
     );
 
     loadRecentlyOpenedSlideData();
+
+    // todo (kg) - Clean this up, there's a better way to launch this...
+    // this was just quick and dirty way to get this screen presenting
+    setApplicationMenu([
+      Submenu(label: 'File', children: [
+        MenuItem(
+          label: 'Open',
+          onClicked: () {
+//            loadSlideDataFromFileChooser();
+            Navigator.pushNamed(context, '/load_new_presentation');
+          },
+        ),
+      ]),
+    ]);
   }
 
   @override
@@ -77,10 +93,7 @@ class _SlidePresentationState extends State<SlidePresentation>
         animation: _slideListController,
         builder: (context, child) {
           if (model.slides == null) {
-            return _emptyState(
-              model.projectBGColor,
-              model.slidesListHighlightColor,
-            );
+            return LoadPresentationScreen();
           }
           bool animatedTransition =
               model.slides[_currentSlideIndex].animatedTransition ||
