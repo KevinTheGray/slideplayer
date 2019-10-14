@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_slides/models/presentation_loaders/file_system_presentation_loader.dart';
+import 'package:flutter_slides/models/presentation_loaders/firebase_database_presentation_loader.dart';
 import 'package:flutter_slides/models/presentation_loaders/presentation_loader.dart';
 import 'package:flutter_slides/models/slide.dart';
 import 'package:flutter_slides/models/slide_factors.dart';

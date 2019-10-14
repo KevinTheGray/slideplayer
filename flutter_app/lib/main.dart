@@ -37,9 +37,6 @@ void main() {
 class _MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FirebaseDatabase.instance.reference().onValue.listen((event) {
-      print(event.snapshot.value);
-    });
     return ScopedModel<FlutterSlidesModel>(
       model: loadedSlides,
       child: MaterialApp(
