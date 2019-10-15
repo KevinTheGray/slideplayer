@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter_slides/models/slides.dart';
 import 'package:flutter_slides/slides/slide_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class _SlidePresentationState extends State<SlidePresentation>
   bool listTapAllowed = false;
   AnimationController _transitionController;
   AnimationController _slideListController;
+  AnimationController _editorController;
   double _lastSlideListScrollOffset = 0.0;
   SlidePageController _slidePageController = SlidePageController();
   Timer _autoAdvanceTimer;
@@ -38,6 +40,11 @@ class _SlidePresentationState extends State<SlidePresentation>
     );
 
     _slideListController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 250),
+    );
+
+    _editorController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 250),
     );
@@ -90,7 +97,10 @@ class _SlidePresentationState extends State<SlidePresentation>
         onKeyEvent(event, model);
       },
       child: AnimatedBuilder(
-        animation: _slideListController,
+        animation: Listenable.merge([
+          _editorController,
+          _slideListController,
+        ]),
         builder: (context, child) {
           if (model.slides == null) {
             return LoadPresentationScreen();
@@ -102,30 +112,44 @@ class _SlidePresentationState extends State<SlidePresentation>
               model.slides[_currentSlideIndex].animatedTransition ||
                   model.animateSlideTransitions;
           return Container(
-              color: model.projectBGColor,
-              constraints: BoxConstraints.expand(),
-              child: Stack(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(width: _slideListController.value * 200.0),
-                      Container(width: _slideListController.value * 50.0),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: animatedTransition
-                              ? _animatedSlideTransition(model)
-                              : _currentSlide(model),
-                        ),
+            color: model.projectBGColor,
+            constraints: BoxConstraints.expand(),
+            child: Stack(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Container(width: _slideListController.value * 200.0),
+                    Container(
+                        width: max(_slideListController.value,
+                                _editorController.value) *
+                            25.0),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: animatedTransition
+                            ? _animatedSlideTransition(model)
+                            : _currentSlide(model),
                       ),
-                      Container(width: _slideListController.value * 50.0),
-                    ],
-                  ),
-                  _slideListController.value <= 0.01
+                    ),
+                    Container(
+                        width: max(_slideListController.value,
+                                _editorController.value) *
+                            25.0),
+                    Container(width: _editorController.value * 300.0),
+                  ],
+                ),
+                _slideListController.value <= 0.01
+                    ? Container()
+                    : _slideList(model),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: _editorController.value <= 0.01
                       ? Container()
-                      : _slideList(model),
-                ],
-              ));
+                      : _editorWidget(model),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
@@ -169,6 +193,16 @@ class _SlidePresentationState extends State<SlidePresentation>
       slide: model.slides[_currentSlideIndex],
       controller: _slidePageController,
       index: _currentSlideIndex,
+    );
+  }
+
+  Widget _editorWidget(FlutterSlidesModel model) {
+    return Transform.translate(
+      offset: Offset(300.0 + _editorController.value * -300.0, 0.0),
+      child: Container(
+        width: 300.0,
+        color: model.slidesListBGColor,
+      ),
     );
   }
 
@@ -310,11 +344,21 @@ class _SlidePresentationState extends State<SlidePresentation>
         final RawKeyEventDataMacOs data = event.data;
         keyCode = data.keyCode;
         if (keyCode == 33) {
-          _slideListController?.reverse();
+          if (_slideListController?.status == AnimationStatus.forward ||
+              _slideListController?.status == AnimationStatus.completed) {
+            _slideListController?.reverse();
+          } else {
+            _slideListController?.forward();
+          }
         } else if (keyCode == 49) {
           _advancePresentation(model);
         } else if (keyCode == 30) {
-          _slideListController?.forward();
+          if (_editorController?.status == AnimationStatus.forward ||
+              _editorController?.status == AnimationStatus.completed) {
+            _editorController?.reverse();
+          } else {
+            _editorController?.forward();
+          }
         } else if (keyCode == 123) {
           // tapped left
           _reversePresentation(model);
