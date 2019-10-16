@@ -128,7 +128,7 @@ class _LottieContentState extends State<LottieContent>
   }
 
   Future<LottieComposition> loadFile(String filePath) async {
-    return await File('${loadedSlides.externalFilesRoot}/$filePath')
+    return await File('${loadedSlides.presentationMetadata.externalFilesRoot}/$filePath')
         .readAsString()
         .then<Map<String, dynamic>>((String data) => json.decode(data))
         .then((Map<String, dynamic> map) => new LottieComposition.fromMap(map));

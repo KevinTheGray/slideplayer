@@ -12,7 +12,7 @@ class LoadPresentationScreen extends StatelessWidget {
     FlutterSlidesModel model =
         ScopedModel.of<FlutterSlidesModel>(context, rebuildOnChange: true);
     return Material(
-      color: model.projectBGColor,
+      color: model.presentationMetadata.projectBGColor,
       child: Container(
         padding: EdgeInsets.all(15.0),
         child: Center(
@@ -32,14 +32,13 @@ class LoadPresentationScreen extends StatelessWidget {
               MaterialButton(
                 minWidth: 200.0,
                 height: 60.0,
-                color: model.slidesListHighlightColor,
+                color: model.presentationMetadata.slidesListHighlightColor,
                 onPressed: () {
                   file_chooser.showOpenPanel((result, paths) {
                     if (paths != null) {
                       loadPresentation(
                           FileSystemPresentationLoader(paths.first));
-                      Navigator.of(context)
-                          .popUntil(ModalRoute.withName('/'));
+                      Navigator.of(context).popUntil(ModalRoute.withName('/'));
                     }
                   }, allowsMultipleSelection: false);
                 },
@@ -70,8 +69,8 @@ class LoadPresentationScreen extends StatelessWidget {
                   if (snapshot.data == null) {
                     return Center(
                       child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            model.slidesListHighlightColor),
+                        valueColor: AlwaysStoppedAnimation<Color>(model
+                            .presentationMetadata.slidesListHighlightColor),
                       ),
                     );
                   }
@@ -122,7 +121,8 @@ class LoadPresentationScreen extends StatelessWidget {
                                 Padding(padding: EdgeInsets.only(left: 15.0)),
                                 MaterialButton(
                                   height: 40.0,
-                                  color: model.slidesListHighlightColor,
+                                  color: model.presentationMetadata
+                                      .slidesListHighlightColor,
                                   onPressed: () {
                                     loadPresentation(
                                         FirebaseDatabasePresentationLoader(

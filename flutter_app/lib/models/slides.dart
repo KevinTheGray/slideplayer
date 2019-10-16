@@ -9,21 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_slides/utils/color_utils.dart' as ColorUtils;
-import 'package:file_chooser/file_chooser.dart' as file_chooser;
 
 FlutterSlidesModel loadedSlides = FlutterSlidesModel();
 
 const _RECENTLY_OPENED_FILE_PREFS_TYPE_ID_KEY = 'last_opened_type_id';
 const _RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY =
     'last_opened_presentation_id';
-
-void loadSlideDataFromFileChooser() {
-  file_chooser.showOpenPanel((result, paths) {
-    if (paths != null) {
-      loadPresentation(FileSystemPresentationLoader(paths.first));
-    }
-  }, allowsMultipleSelection: false);
-}
 
 void loadRecentlyOpenedSlideData() {
   // todo (kg) - clean everything about this up.
@@ -48,8 +39,19 @@ void loadPresentation(PresentationLoader presentationLoader) {
   loadedSlides.loadPresentation(presentationLoader);
 }
 
-class FlutterSlidesModel extends Model {
-  List<Slide> slides;
+class DebugOptions {
+  DebugOptions({
+    this.showDebugContainers = false,
+    this.autoAdvance = false,
+    this.autoAdvanceDurationMillis = 30000,
+  });
+
+  final bool showDebugContainers;
+  final bool autoAdvance;
+  final int autoAdvanceDurationMillis;
+}
+
+class PresentationMetadata {
   String externalFilesRoot;
   double slideWidth = 1920.0;
   double slideHeight = 1080.0;
@@ -58,9 +60,12 @@ class FlutterSlidesModel extends Model {
   Color slidesListBGColor = Color(0xFFDDDDDD);
   Color slidesListHighlightColor = Color(0xFF40C4FF);
   bool animateSlideTransitions = false;
-  bool showDebugContainers = false;
-  bool autoAdvance = false;
-  int autoAdvanceDurationMillis = 30000;
+}
+
+class FlutterSlidesModel extends Model {
+  List<Slide> slides;
+  DebugOptions _debugOptions = DebugOptions();
+  PresentationMetadata presentationMetadata = PresentationMetadata();
 
   PresentationLoader _presentationLoader;
 
@@ -86,34 +91,35 @@ class FlutterSlidesModel extends Model {
       }
 
       Map metadata = json['presentation_metadata'];
-      loadedSlides.slideWidth = (metadata['slide_width'] ?? 1920.0).toDouble();
-      loadedSlides.slideHeight =
-          (metadata['slide_height'] ?? 1080.0).toDouble();
-      loadedSlides.fontScaleFactor =
-          (metadata['font_scale_factor'] ?? loadedSlides.slideWidth).toDouble();
-      loadedSlides.projectBGColor =
+      presentationMetadata.slideWidth =
+          (metadata['slide_width'] ?? presentationMetadata.slideWidth)
+              .toDouble();
+      presentationMetadata.slideHeight =
+          (metadata['slide_height'] ?? presentationMetadata.slideHeight)
+              .toDouble();
+      presentationMetadata.fontScaleFactor =
+          (metadata['font_scale_factor'] ?? presentationMetadata.slideWidth)
+              .toDouble();
+      presentationMetadata.projectBGColor =
           ColorUtils.colorFromString(metadata['project_bg_color']) ??
-              loadedSlides.projectBGColor;
-      loadedSlides.slidesListBGColor =
+              presentationMetadata.projectBGColor;
+      presentationMetadata.slidesListBGColor =
           ColorUtils.colorFromString(metadata['project_slide_list_bg_color']) ??
-              loadedSlides.slidesListBGColor;
-      loadedSlides.slidesListHighlightColor = ColorUtils.colorFromString(
-              metadata['project_slide_list_highlight_color']) ??
-          loadedSlides.slidesListHighlightColor;
-      loadedSlides.animateSlideTransitions =
+              presentationMetadata.slidesListBGColor;
+      presentationMetadata.slidesListHighlightColor =
+          ColorUtils.colorFromString(
+                  metadata['project_slide_list_highlight_color']) ??
+              presentationMetadata.slidesListHighlightColor;
+      presentationMetadata.animateSlideTransitions =
           metadata['animate_slide_transitions'] ?? false;
-      loadedSlides.showDebugContainers =
-          metadata['show_debug_containers'] ?? false;
-      loadedSlides.externalFilesRoot = metadata['external_files_root'] ??
-          _presentationLoader.externalFilesRoot;
-      loadedSlides.autoAdvance = metadata['auto_advance'] ?? false;
-      loadedSlides.autoAdvanceDurationMillis =
-          metadata['auto_advance_duration_millis'] ?? 30000;
+      presentationMetadata.externalFilesRoot =
+          metadata['external_files_root'] ??
+              _presentationLoader.externalFilesRoot;
 
       SlideFactors slideFactors = SlideFactors(
-        normalizationWidth: loadedSlides.slideWidth,
-        normalizationHeight: loadedSlides.slideHeight,
-        fontScaleFactor: loadedSlides.fontScaleFactor,
+        normalizationWidth: presentationMetadata.slideWidth,
+        normalizationHeight: presentationMetadata.slideHeight,
+        fontScaleFactor: presentationMetadata.fontScaleFactor,
       );
       List slides = json['slides'];
       List<Slide> slideList = [];
@@ -152,4 +158,25 @@ class FlutterSlidesModel extends Model {
     }
     return jsonString;
   }
+
+  void addSlide(Map json, {int index}) {}
+
+  void removeSlide(int index) {}
+
+  void modifySlide(int index, Map json) {}
+
+  void reorderSlides(int indexA, int indexB) {}
+
+  void modifyMetadata(Map json) {}
+
+  void updateReplaceValues(Map json) {}
+
+  DebugOptions get debugOptions => _debugOptions;
+
+  set debugOptions(DebugOptions debugOptions) {
+   _debugOptions = debugOptions;
+   notifyListeners();
+  }
+
+  void saveCurrent() {}
 }

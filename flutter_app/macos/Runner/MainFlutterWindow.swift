@@ -19,7 +19,7 @@ import FirebaseCore
 
 class MainFlutterWindow: NSWindow {
   override func awakeFromNib() {
-    minSize.width = 400.0
+    minSize.width = 800.0
     minSize.height = 400.0
 
     let flutterViewController = FlutterViewController.init()

@@ -301,7 +301,7 @@ class PillarsContentState extends State<PillarsContent>
     }
     double normWidthMulti = widget.normMultis.width;
     double normHeightMulti = widget.normMultis.height;
-    final root = loadedSlides.externalFilesRoot;
+    final root = loadedSlides.presentationMetadata.externalFilesRoot;
     final shellFile = File('$root/${sectionData.shellFilePath}');
     final innerFile = File('$root/${sectionData.innerFilePath}');
     final top = sectionData.shellImageOffsetPosition.top *
@@ -405,7 +405,9 @@ class PillarsContentState extends State<PillarsContent>
             ),
             child: Center(
               child: Image.file(
-                File(loadedSlides.externalFilesRoot + '/' + orbImagePath),
+                File(loadedSlides.presentationMetadata.externalFilesRoot +
+                    '/' +
+                    orbImagePath),
               ),
             ),
           ),

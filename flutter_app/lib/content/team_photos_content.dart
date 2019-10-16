@@ -57,7 +57,7 @@ class _TeamPhotosImagePathSupplier {
 
 class _TeamPhotosContentState extends State<TeamPhotosContent> {
   int _imagesSuppliedCount = 0;
-  final String fileRoot = loadedSlides.externalFilesRoot;
+  final String fileRoot = loadedSlides.presentationMetadata.externalFilesRoot;
 
   _TeamPhotosImagePathSupplier _teamPhotosImagePathSupplier;
   @override
@@ -128,7 +128,7 @@ class TeamPhotoImage extends StatefulWidget {
 
 class _TeamPhotoImageState extends State<TeamPhotoImage>
     with TickerProviderStateMixin {
-  final String fileRoot = loadedSlides.externalFilesRoot;
+  final String fileRoot = loadedSlides.presentationMetadata.externalFilesRoot;
   AnimationController _animationController;
   Timer _updateTimer;
   String _nextImagePath;

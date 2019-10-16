@@ -84,9 +84,10 @@ class _SlidePresentationState extends State<SlidePresentation>
         ScopedModel.of<FlutterSlidesModel>(context, rebuildOnChange: true);
 
     _autoAdvanceTimer?.cancel();
-    if (model.autoAdvance) {
+    if (model.debugOptions.autoAdvance) {
       _autoAdvanceTimer = Timer.periodic(
-          Duration(milliseconds: model.autoAdvanceDurationMillis), (_) {
+          Duration(milliseconds: model.debugOptions.autoAdvanceDurationMillis),
+          (_) {
         _advancePresentation(model);
       });
     }
@@ -110,9 +111,9 @@ class _SlidePresentationState extends State<SlidePresentation>
           }
           bool animatedTransition =
               model.slides[_currentSlideIndex].animatedTransition ||
-                  model.animateSlideTransitions;
+                  model.presentationMetadata.animateSlideTransitions;
           return Container(
-            color: model.projectBGColor,
+            color: model.presentationMetadata.projectBGColor,
             constraints: BoxConstraints.expand(),
             child: Stack(
               children: <Widget>[
@@ -122,7 +123,7 @@ class _SlidePresentationState extends State<SlidePresentation>
                     Container(
                         width: max(_slideListController.value,
                                 _editorController.value) *
-                            25.0),
+                            15.0),
                     Expanded(
                       child: Align(
                         alignment: Alignment.center,
@@ -134,7 +135,7 @@ class _SlidePresentationState extends State<SlidePresentation>
                     Container(
                         width: max(_slideListController.value,
                                 _editorController.value) *
-                            25.0),
+                            15.0),
                     Container(width: _editorController.value * 300.0),
                   ],
                 ),
@@ -201,7 +202,86 @@ class _SlidePresentationState extends State<SlidePresentation>
       offset: Offset(300.0 + _editorController.value * -300.0, 0.0),
       child: Container(
         width: 300.0,
-        color: model.slidesListBGColor,
+        color: model.presentationMetadata.slidesListBGColor,
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            backgroundColor: model.presentationMetadata.slidesListBGColor,
+            appBar: AppBar(
+              backgroundColor:
+                  model.presentationMetadata.slidesListHighlightColor,
+              bottom: TabBar(
+                tabs: [
+                  Tab(icon: Icon(Icons.settings)),
+                  Tab(icon: Icon(Icons.slideshow)),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: [
+                ListView(
+                  children: <Widget>[
+                    Text('Debug:'),
+                    Row(
+                      children: <Widget>[
+                        Checkbox(
+                          value: model.debugOptions.showDebugContainers,
+                          onChanged: (value) {
+                            model.debugOptions = DebugOptions(
+                              showDebugContainers: value,
+                              autoAdvance: model.debugOptions.autoAdvance,
+                              autoAdvanceDurationMillis:
+                                  model.debugOptions.autoAdvanceDurationMillis,
+                            );
+                          },
+                        ),
+                        Text('Show Content Borders'),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Checkbox(
+                          value: model.debugOptions.autoAdvance,
+                          onChanged: (value) {
+                            model.debugOptions = DebugOptions(
+                              showDebugContainers:
+                                  model.debugOptions.showDebugContainers,
+                              autoAdvance: value,
+                              autoAdvanceDurationMillis:
+                                  model.debugOptions.autoAdvanceDurationMillis,
+                            );
+                          },
+                        ),
+                        Text('Auto-Advance'),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Text('A-A Duration'),
+                        Expanded(
+                          child: TextField(
+                            onSubmitted: (value) {
+                              model.debugOptions = DebugOptions(
+                                showDebugContainers:
+                                    model.debugOptions.showDebugContainers,
+                                autoAdvance: model.debugOptions.autoAdvance,
+                                autoAdvanceDurationMillis: int.tryParse(
+                                      value,
+                                    ) ??
+                                    30000,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Icon(Icons.slideshow),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -211,7 +291,7 @@ class _SlidePresentationState extends State<SlidePresentation>
       offset: Offset(-200.0 + _slideListController.value * 200.0, 0.0),
       child: Container(
         width: 200.0,
-        color: model.slidesListBGColor,
+        color: model.presentationMetadata.slidesListBGColor,
         child: NotificationListener<ScrollNotification>(
           onNotification: (notification) {
             _lastSlideListScrollOffset = notification.metrics.pixels;
@@ -238,7 +318,8 @@ class _SlidePresentationState extends State<SlidePresentation>
                         border: Border.all(
                           color: _currentSlideIndex != index
                               ? Colors.transparent
-                              : model.slidesListHighlightColor,
+                              : model.presentationMetadata
+                                  .slidesListHighlightColor,
                           width: 4.0,
                         ),
                       ),
@@ -253,8 +334,9 @@ class _SlidePresentationState extends State<SlidePresentation>
                       child: Container(
                         height: 20.0,
                         child: Material(
-                          color:
-                              model.slidesListHighlightColor.withOpacity(0.75),
+                          color: model
+                              .presentationMetadata.slidesListHighlightColor
+                              .withOpacity(0.75),
                           child: Center(
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 4.0),
@@ -274,42 +356,6 @@ class _SlidePresentationState extends State<SlidePresentation>
                 ),
               );
             },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _emptyState(Color bgColor, Color buttonColor) {
-    return Material(
-      color: bgColor,
-      child: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              Text(
-                "Flutter Slides",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 32.0),
-              ),
-              Container(
-                height: 12.0,
-              ),
-              MaterialButton(
-                minWidth: 200.0,
-                height: 60.0,
-                color: buttonColor,
-                onPressed: () {
-                  loadSlideDataFromFileChooser();
-                },
-                child: Text(
-                  'Open',
-                  style: TextStyle(color: Colors.white, fontSize: 24.0),
-                ),
-              ),
-            ],
           ),
         ),
       ),
@@ -376,7 +422,8 @@ class _SlidePresentationState extends State<SlidePresentation>
   void _advancePresentation(FlutterSlidesModel model) {
     bool didAdvanceSlideContent = _slidePageController.advanceSlideContent();
     if (!didAdvanceSlideContent) {
-      if (model.autoAdvance && _currentSlideIndex == model.slides.length - 1) {
+      if (model.debugOptions.autoAdvance &&
+          _currentSlideIndex == model.slides.length - 1) {
         _moveToSlideAtIndex(model, 0);
       } else {
         _moveToSlideAtIndex(model, _currentSlideIndex + 1);
@@ -408,7 +455,7 @@ class _SlidePresentationState extends State<SlidePresentation>
             provider = Image.asset(content['asset']).image;
           }
           if (content.containsKey('file')) {
-            final root = model.externalFilesRoot;
+            final root = model.presentationMetadata.externalFilesRoot;
             provider = FileImage(File('$root/${content['file']}'));
           }
           final config = createLocalImageConfiguration(context);

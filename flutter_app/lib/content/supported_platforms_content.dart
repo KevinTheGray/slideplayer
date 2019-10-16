@@ -164,7 +164,8 @@ class _SupportedPlatformsContentState extends State<SupportedPlatformsContent> {
                                         imageHeight * widget.normMultis.height,
                                     child: Image.file(
                                       File(
-                                        loadedSlides.externalFilesRoot +
+                                        loadedSlides.presentationMetadata
+                                                .externalFilesRoot +
                                             '/' +
                                             widget.cellData[index %
                                                     widget.cellData.length]

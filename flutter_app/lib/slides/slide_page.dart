@@ -123,7 +123,7 @@ class SlidePageState extends State<SlidePage>
     Widget contentWidget = SlideContentFactory().generate(
         type, contentMap, widget.isPreview, multis, _slideAdvancementNotifier);
     final rotationDegrees = contentMap['rotation'] ?? 0;
-    if (loadedSlides.showDebugContainers) {
+    if (loadedSlides.debugOptions.showDebugContainers) {
       contentWidget = Container(
         decoration: BoxDecoration(
           border: Border.all(

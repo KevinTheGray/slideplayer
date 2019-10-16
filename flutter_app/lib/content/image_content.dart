@@ -26,7 +26,7 @@ class ImageContent extends StatelessWidget {
       final Image image = Image.asset(assetPath, fit: fit);
       return image;
     } else {
-      final root = loadedSlides.externalFilesRoot;
+      final root = loadedSlides.presentationMetadata.externalFilesRoot;
       if (evict) {
         FileImage(File('$root/$filePath')).evict();
       }
