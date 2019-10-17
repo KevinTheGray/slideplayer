@@ -19,10 +19,10 @@ const _RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY =
 void loadRecentlyOpenedSlideData() {
   // todo (kg) - clean everything about this up.
   SharedPreferences.getInstance().then(
-        (prefs) {
+    (prefs) {
       String type = prefs.getString(_RECENTLY_OPENED_FILE_PREFS_TYPE_ID_KEY);
       String presentationID =
-      prefs.getString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY);
+          prefs.getString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY);
       if (presentationID == null) {
         return;
       }
@@ -63,7 +63,7 @@ class DebugOptions {
       showDebugContainers: showDebugContainers ?? this.showDebugContainers,
       autoAdvance: autoAdvance ?? this.autoAdvance,
       autoAdvanceDurationMillis:
-      autoAdvanceDurationMillis ?? this.autoAdvanceDurationMillis,
+          autoAdvanceDurationMillis ?? this.autoAdvanceDurationMillis,
     );
   }
 }
@@ -81,7 +81,8 @@ class PresentationMetadata {
 
 class FlutterSlidesModel extends Model {
   Map _currentSlides;
-  List<Map> _undo;
+  List<Map> _undoStack = [];
+  List<Map> _redoStack = [];
   List<Slide> slides;
   DebugOptions _debugOptions = DebugOptions();
   PresentationMetadata presentationMetadata = PresentationMetadata();
@@ -103,12 +104,15 @@ class FlutterSlidesModel extends Model {
     try {
       String fileString = presentationJSONString;
       Map json = jsonDecode(fileString);
-
       Map replaceValues = json['replace_values'];
       if (replaceValues != null) {
         json = jsonDecode(_replaceValues(fileString, replaceValues));
       }
+      print('hi');
       _currentSlides = json;
+      _undoStack.clear();
+      _redoStack.clear();
+      _undoStack.add(_currentSlides);
       _update();
     } catch (e) {
       print("Error loading slides file: $e");
@@ -136,7 +140,7 @@ class FlutterSlidesModel extends Model {
               presentationMetadata.slidesListBGColor;
       presentationMetadata.slidesListHighlightColor =
           ColorUtils.colorFromString(
-              metadata['project_slide_list_highlight_color']) ??
+                  metadata['project_slide_list_highlight_color']) ??
               presentationMetadata.slidesListHighlightColor;
       presentationMetadata.animateSlideTransitions =
           metadata['animate_slide_transitions'] ?? false;
@@ -156,7 +160,7 @@ class FlutterSlidesModel extends Model {
         int advancementCount = slide['advancement_count'] ?? 0;
         bool animatedTransition = slide['animated_transition'] ?? false;
         Color slideBGColor =
-        ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
+            ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
         slideList.add(
           Slide(
               content: contentList,
@@ -174,7 +178,6 @@ class FlutterSlidesModel extends Model {
         prefs.setString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY,
             _presentationLoader.presentationID);
       });
-//      _presentationLoader.save(_currentSlides);
     } catch (e) {
       print("Error loading slides file: $e");
     }
@@ -191,8 +194,14 @@ class FlutterSlidesModel extends Model {
   void addSlide(Map json, {int index}) {}
 
   void removeSlide(int index) {
+    _undoStack.add(_currentSlides);
+    _redoStack.clear();
+
+    _currentSlides = _currentCopy();
     (_currentSlides['slides'] as List).removeAt(index);
+
     _update();
+//    saveCurrent();
   }
 
   void modifySlide(int index, Map json) {}
@@ -210,12 +219,26 @@ class FlutterSlidesModel extends Model {
     notifyListeners();
   }
 
-
   void saveCurrent() {
     _presentationLoader.save(_currentSlides);
   }
 
   void undo() {
-    print('undo');
+    if (_undoStack.length > 1) {
+      _redoStack.add(_currentSlides);
+      _currentSlides = _undoStack.removeLast();
+      _update();
+//      saveCurrent();
+    }
   }
+
+  void redo() {
+    if (_redoStack.length > 0) {
+      _undoStack.add(_currentSlides);
+      _currentSlides = _redoStack.removeAt(0);
+      _update();
+    }
+  }
+
+  Map _currentCopy() => json.decode(json.encode(_currentSlides));
 }

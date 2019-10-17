@@ -280,6 +280,34 @@ class _SlidePresentationState extends State<SlidePresentation>
                         ),
                       ],
                     ),
+                    Container(height: 10.0),
+                    Row(
+                      children: <Widget>[
+                        MaterialButton(
+                          height: 60.0,
+                          color: model.presentationMetadata.slidesListHighlightColor,
+                          onPressed: () {
+                            model.undo();
+                          },
+                          child: Text(
+                            'Undo',
+                            style: TextStyle(color: Colors.white, fontSize: 24.0),
+                          ),
+                        ),
+                        Expanded(child: Container(),),
+                        MaterialButton(
+                          height: 60.0,
+                          color: model.presentationMetadata.slidesListHighlightColor,
+                          onPressed: () {
+                            model.redo();
+                          },
+                          child: Text(
+                            'Redo',
+                            style: TextStyle(color: Colors.white, fontSize: 24.0),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 Icon(Icons.slideshow),
