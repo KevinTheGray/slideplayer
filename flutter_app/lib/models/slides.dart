@@ -235,7 +235,7 @@ class FlutterSlidesModel extends Model {
   void redo() {
     if (_redoStack.length > 0) {
       _undoStack.add(_currentSlides);
-      _currentSlides = _redoStack.removeAt(0);
+      _currentSlides = _redoStack.removeLast();
       _update();
     }
   }
