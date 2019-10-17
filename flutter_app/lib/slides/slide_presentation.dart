@@ -225,11 +225,8 @@ class _SlidePresentationState extends State<SlidePresentation>
                         Checkbox(
                           value: model.debugOptions.showDebugContainers,
                           onChanged: (value) {
-                            model.debugOptions = DebugOptions(
+                            model.debugOptions = model.debugOptions.copyWith(
                               showDebugContainers: value,
-                              autoAdvance: model.debugOptions.autoAdvance,
-                              autoAdvanceDurationMillis:
-                                  model.debugOptions.autoAdvanceDurationMillis,
                             );
                           },
                         ),
@@ -241,12 +238,8 @@ class _SlidePresentationState extends State<SlidePresentation>
                         Checkbox(
                           value: model.debugOptions.autoAdvance,
                           onChanged: (value) {
-                            model.debugOptions = DebugOptions(
-                              showDebugContainers:
-                                  model.debugOptions.showDebugContainers,
+                            model.debugOptions = model.debugOptions.copyWith(
                               autoAdvance: value,
-                              autoAdvanceDurationMillis:
-                                  model.debugOptions.autoAdvanceDurationMillis,
                             );
                           },
                         ),
@@ -259,10 +252,7 @@ class _SlidePresentationState extends State<SlidePresentation>
                         Expanded(
                           child: TextField(
                             onSubmitted: (value) {
-                              model.debugOptions = DebugOptions(
-                                showDebugContainers:
-                                    model.debugOptions.showDebugContainers,
-                                autoAdvance: model.debugOptions.autoAdvance,
+                              model.debugOptions = model.debugOptions.copyWith(
                                 autoAdvanceDurationMillis: int.tryParse(
                                       value,
                                     ) ??

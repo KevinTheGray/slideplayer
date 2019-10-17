@@ -19,10 +19,10 @@ const _RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY =
 void loadRecentlyOpenedSlideData() {
   // todo (kg) - clean everything about this up.
   SharedPreferences.getInstance().then(
-    (prefs) {
+        (prefs) {
       String type = prefs.getString(_RECENTLY_OPENED_FILE_PREFS_TYPE_ID_KEY);
       String presentationID =
-          prefs.getString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY);
+      prefs.getString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY);
       if (presentationID == null) {
         return;
       }
@@ -40,15 +40,28 @@ void loadPresentation(PresentationLoader presentationLoader) {
 }
 
 class DebugOptions {
+  final bool showDebugContainers;
+  final bool autoAdvance;
+  final int autoAdvanceDurationMillis;
+
   DebugOptions({
     this.showDebugContainers = false,
     this.autoAdvance = false,
     this.autoAdvanceDurationMillis = 30000,
   });
 
-  final bool showDebugContainers;
-  final bool autoAdvance;
-  final int autoAdvanceDurationMillis;
+  DebugOptions copyWith({
+    bool showDebugContainers,
+    bool autoAdvance,
+    int autoAdvanceDurationMillis,
+  }) {
+    return DebugOptions(
+      showDebugContainers: showDebugContainers ?? this.showDebugContainers,
+      autoAdvance: autoAdvance ?? this.autoAdvance,
+      autoAdvanceDurationMillis:
+      autoAdvanceDurationMillis ?? this.autoAdvanceDurationMillis,
+    );
+  }
 }
 
 class PresentationMetadata {
@@ -63,6 +76,8 @@ class PresentationMetadata {
 }
 
 class FlutterSlidesModel extends Model {
+  Map _currentSlides;
+  List<Map> _undo;
   List<Slide> slides;
   DebugOptions _debugOptions = DebugOptions();
   PresentationMetadata presentationMetadata = PresentationMetadata();
@@ -89,7 +104,16 @@ class FlutterSlidesModel extends Model {
       if (replaceValues != null) {
         json = jsonDecode(_replaceValues(fileString, replaceValues));
       }
+      _currentSlides = json;
+      _update();
+    } catch (e) {
+      print("Error loading slides file: $e");
+    }
+  }
 
+  void _update() {
+    try {
+      final json = _currentSlides;
       Map metadata = json['presentation_metadata'];
       presentationMetadata.slideWidth =
           (metadata['slide_width'] ?? presentationMetadata.slideWidth)
@@ -108,7 +132,7 @@ class FlutterSlidesModel extends Model {
               presentationMetadata.slidesListBGColor;
       presentationMetadata.slidesListHighlightColor =
           ColorUtils.colorFromString(
-                  metadata['project_slide_list_highlight_color']) ??
+              metadata['project_slide_list_highlight_color']) ??
               presentationMetadata.slidesListHighlightColor;
       presentationMetadata.animateSlideTransitions =
           metadata['animate_slide_transitions'] ?? false;
@@ -128,7 +152,7 @@ class FlutterSlidesModel extends Model {
         int advancementCount = slide['advancement_count'] ?? 0;
         bool animatedTransition = slide['animated_transition'] ?? false;
         Color slideBGColor =
-            ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
+        ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
         slideList.add(
           Slide(
               content: contentList,
@@ -146,6 +170,7 @@ class FlutterSlidesModel extends Model {
         prefs.setString(_RECENTLY_OPENED_FILE_PREFS_PRESENTATION_ID_KEY,
             _presentationLoader.presentationID);
       });
+//      _presentationLoader.save(_currentSlides);
     } catch (e) {
       print("Error loading slides file: $e");
     }
@@ -161,7 +186,10 @@ class FlutterSlidesModel extends Model {
 
   void addSlide(Map json, {int index}) {}
 
-  void removeSlide(int index) {}
+  void removeSlide(int index) {
+    (_currentSlides['slides'] as List).removeAt(index);
+    _update();
+  }
 
   void modifySlide(int index, Map json) {}
 
@@ -174,9 +202,12 @@ class FlutterSlidesModel extends Model {
   DebugOptions get debugOptions => _debugOptions;
 
   set debugOptions(DebugOptions debugOptions) {
-   _debugOptions = debugOptions;
-   notifyListeners();
+    _debugOptions = debugOptions;
+    notifyListeners();
   }
 
-  void saveCurrent() {}
+
+  void undo() {
+    print('undo');
+  }
 }
