@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_slides/models/presentation_loaders/presentation_loader.dart';
@@ -44,5 +45,11 @@ class FileSystemPresentationLoader extends PresentationLoader {
   void _loadData() async {
     _presentationJSONString = await File(filePath).readAsString();
     notifyListeners();
+  }
+
+  @override
+  void save(Map presentation) async {
+    File(filePath)
+        .writeAsString(JsonEncoder.withIndent('  ').convert(presentation));
   }
 }

@@ -7,5 +7,6 @@ abstract class PresentationLoader extends ChangeNotifier {
   String get typeID;
   String get presentationID;
   void load();
+  void save(Map presentation);
   void dispose();
 }

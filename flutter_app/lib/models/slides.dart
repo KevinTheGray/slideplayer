@@ -39,6 +39,10 @@ void loadPresentation(PresentationLoader presentationLoader) {
   loadedSlides.loadPresentation(presentationLoader);
 }
 
+void saveCurrent() {
+  loadedSlides.saveCurrent();
+}
+
 class DebugOptions {
   final bool showDebugContainers;
   final bool autoAdvance;
@@ -206,6 +210,10 @@ class FlutterSlidesModel extends Model {
     notifyListeners();
   }
 
+
+  void saveCurrent() {
+    _presentationLoader.save(_currentSlides);
+  }
 
   void undo() {
     print('undo');

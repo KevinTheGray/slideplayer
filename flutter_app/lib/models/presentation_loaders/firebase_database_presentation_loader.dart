@@ -49,4 +49,9 @@ class FirebaseDatabasePresentationLoader extends PresentationLoader {
       },
     );
   }
+
+  @override
+  void save(Map presentation) {
+    // TODO: implement save
+  }
 }

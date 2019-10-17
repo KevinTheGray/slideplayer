@@ -56,8 +56,13 @@ class _SlidePresentationState extends State<SlidePresentation>
         MenuItem(
           label: 'Open',
           onClicked: () {
-//            loadSlideDataFromFileChooser();
             Navigator.pushNamed(context, '/load_new_presentation');
+          },
+        ),
+        MenuItem(
+          label: 'Save',
+          onClicked: () {
+            saveCurrent();
           },
         ),
       ]),
@@ -107,9 +112,12 @@ class _SlidePresentationState extends State<SlidePresentation>
           if (_currentSlideIndex >= model.slides.length) {
             _currentSlideIndex = 0;
           }
-          bool animatedTransition =
-              model.slides[_currentSlideIndex].animatedTransition ||
-                  model.presentationMetadata.animateSlideTransitions;
+          bool animatedTransition = false;
+          if ((model.slides?.length ?? 0) != 0) {
+            animatedTransition =
+                model.slides[_currentSlideIndex].animatedTransition ||
+                    model.presentationMetadata.animateSlideTransitions;
+          }
           return Container(
             color: model.presentationMetadata.projectBGColor,
             constraints: BoxConstraints.expand(),
@@ -188,6 +196,12 @@ class _SlidePresentationState extends State<SlidePresentation>
   }
 
   Widget _currentSlide(FlutterSlidesModel model) {
+    if (model.slides.length == 0) {
+      return Material(
+        type: MaterialType.transparency,
+        child: Text('Add a Slide'),
+      );
+    }
     return SlidePage(
       slide: model.slides[_currentSlideIndex],
       controller: _slidePageController,
@@ -390,6 +404,8 @@ class _SlidePresentationState extends State<SlidePresentation>
           _reversePresentation(model);
         } else if (keyCode == 124) {
           _advancePresentation(model);
+        } else if (keyCode == 51) {
+          model.removeSlide(_currentSlideIndex);
         }
         break;
       default:
