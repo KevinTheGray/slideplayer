@@ -21,8 +21,6 @@ class _SlidePresentationState extends State<SlidePresentation>
   int _currentSlideIndex = 0;
   int _transitionStartIndex = 0;
   int _transitionEndIndex = 0;
-  final int _lisTapKeycode = 6;
-  bool listTapAllowed = false;
   AnimationController _transitionController;
   AnimationController _slideListController;
   AnimationController _editorController;
@@ -305,11 +303,9 @@ class _SlidePresentationState extends State<SlidePresentation>
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTapDown: (details) {
-                  if (listTapAllowed) {
-                    setState(() {
-                      _moveToSlideAtIndex(model, index);
-                    });
-                  }
+                  setState(() {
+                    _moveToSlideAtIndex(model, index);
+                  });
                 },
                 child: Stack(
                   children: <Widget>[
@@ -367,14 +363,8 @@ class _SlidePresentationState extends State<SlidePresentation>
       case RawKeyDownEvent:
         break;
       case RawKeyUpEvent:
-        int upKeyCode;
         switch (event.data.runtimeType) {
           case RawKeyEventDataMacOs:
-            final RawKeyEventDataMacOs data = event.data;
-            upKeyCode = data.keyCode;
-            if (upKeyCode == _lisTapKeycode) {
-              listTapAllowed = false;
-            }
             break;
           default:
             throw new Exception('Unsupported platform');
@@ -410,8 +400,6 @@ class _SlidePresentationState extends State<SlidePresentation>
           _reversePresentation(model);
         } else if (keyCode == 124) {
           _advancePresentation(model);
-        } else if (keyCode == _lisTapKeycode) {
-          listTapAllowed = true;
         }
         break;
       default:
