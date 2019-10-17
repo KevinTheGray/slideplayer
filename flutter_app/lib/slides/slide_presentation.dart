@@ -98,7 +98,9 @@ class _SlidePresentationState extends State<SlidePresentation>
     return RawKeyboardListener(
       focusNode: _focusNode,
       onKey: (event) {
-        onKeyEvent(event, model);
+        if (_focusNode == FocusScope.of(context).focusedChild) {
+          onKeyEvent(event, model);
+        }
       },
       child: AnimatedBuilder(
         animation: Listenable.merge([
@@ -109,7 +111,8 @@ class _SlidePresentationState extends State<SlidePresentation>
           if (model.slides == null) {
             return LoadPresentationScreen();
           }
-          if (_currentSlideIndex >= model.slides.length) {
+          if (_currentSlideIndex >= model.slides.length ||
+              _currentSlideIndex < 0) {
             _currentSlideIndex = 0;
           }
           bool animatedTransition = false;
@@ -406,6 +409,7 @@ class _SlidePresentationState extends State<SlidePresentation>
           _advancePresentation(model);
         } else if (keyCode == 51) {
           model.removeSlide(_currentSlideIndex);
+          _currentSlideIndex = _currentSlideIndex - 1;
         }
         break;
       default:
