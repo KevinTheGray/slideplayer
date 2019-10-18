@@ -191,7 +191,15 @@ class FlutterSlidesModel extends Model {
     return jsonString;
   }
 
-  void addSlide(Map json, {int index}) {}
+  void addSlide(Map json, {int index = 0}) {
+    _undoStack.add(_currentSlides);
+    _redoStack.clear();
+
+    _currentSlides = _currentCopy();
+    (_currentSlides['slides'] as List).insert(index, json);
+
+    _update();
+  }
 
   void removeSlide(int index) {
     _undoStack.add(_currentSlides);

@@ -285,25 +285,31 @@ class _SlidePresentationState extends State<SlidePresentation>
                       children: <Widget>[
                         MaterialButton(
                           height: 60.0,
-                          color: model.presentationMetadata.slidesListHighlightColor,
+                          color: model
+                              .presentationMetadata.slidesListHighlightColor,
                           onPressed: () {
                             model.undo();
                           },
                           child: Text(
                             'Undo',
-                            style: TextStyle(color: Colors.white, fontSize: 24.0),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 24.0),
                           ),
                         ),
-                        Expanded(child: Container(),),
+                        Expanded(
+                          child: Container(),
+                        ),
                         MaterialButton(
                           height: 60.0,
-                          color: model.presentationMetadata.slidesListHighlightColor,
+                          color: model
+                              .presentationMetadata.slidesListHighlightColor,
                           onPressed: () {
                             model.redo();
                           },
                           child: Text(
                             'Redo',
-                            style: TextStyle(color: Colors.white, fontSize: 24.0),
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 24.0),
                           ),
                         ),
                       ],
@@ -414,6 +420,7 @@ class _SlidePresentationState extends State<SlidePresentation>
       case RawKeyEventDataMacOs:
         final RawKeyEventDataMacOs data = event.data;
         keyCode = data.keyCode;
+        print(keyCode);
         if (keyCode == 33) {
           if (_slideListController?.status == AnimationStatus.forward ||
               _slideListController?.status == AnimationStatus.completed) {
@@ -438,6 +445,18 @@ class _SlidePresentationState extends State<SlidePresentation>
         } else if (keyCode == 51) {
           model.removeSlide(_currentSlideIndex);
           _currentSlideIndex = _currentSlideIndex - 1;
+        } else if (keyCode == 0) {
+
+          if (model.slides.length == 0) {
+            _currentSlideIndex = 0;
+          } else {
+            _currentSlideIndex = _currentSlideIndex + 1;
+          }
+          model.addSlide(
+            {"bg_color": "#FFFFFFFF", "content": []},
+            index: _currentSlideIndex,
+          );
+
         }
         break;
       default:
