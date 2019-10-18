@@ -336,13 +336,18 @@ class _SlidePresentationState extends State<SlidePresentation>
             _lastSlideListScrollOffset = notification.metrics.pixels;
             return true;
           },
-          child: ListView.builder(
-            controller: ScrollController(
-              initialScrollOffset: _lastSlideListScrollOffset,
-            ),
-            itemCount: model.slides.length,
-            itemBuilder: (context, index) {
+          child: ReorderableListView(
+//            controller: ScrollController(
+//              initialScrollOffset: _lastSlideListScrollOffset,
+//            ),
+            onReorder: (indexA, indexB) {
+              final indexBSafe = min(indexB, model.slides.length - 1);
+              model.reorderSlides(indexA, indexBSafe);
+              _currentSlideIndex = indexBSafe;
+            },
+            children: List<Widget>.generate(model.slides.length, (index) {
               return GestureDetector(
+                key: Key('$index'),
                 onTapDown: (details) {
                   setState(() {
                     _moveToSlideAtIndex(model, index);
@@ -392,7 +397,7 @@ class _SlidePresentationState extends State<SlidePresentation>
                   ],
                 ),
               );
-            },
+            }),
           ),
         ),
       ),
@@ -446,7 +451,6 @@ class _SlidePresentationState extends State<SlidePresentation>
           model.removeSlide(_currentSlideIndex);
           _currentSlideIndex = _currentSlideIndex - 1;
         } else if (keyCode == 0) {
-
           if (model.slides.length == 0) {
             _currentSlideIndex = 0;
           } else {
@@ -456,7 +460,6 @@ class _SlidePresentationState extends State<SlidePresentation>
             {"bg_color": "#FFFFFFFF", "content": []},
             index: _currentSlideIndex,
           );
-
         }
         break;
       default:

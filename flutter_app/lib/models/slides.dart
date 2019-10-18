@@ -212,14 +212,6 @@ class FlutterSlidesModel extends Model {
 //    saveCurrent();
   }
 
-  void modifySlide(int index, Map json) {}
-
-  void reorderSlides(int indexA, int indexB) {}
-
-  void modifyMetadata(Map json) {}
-
-  void updateReplaceValues(Map json) {}
-
   DebugOptions get debugOptions => _debugOptions;
 
   set debugOptions(DebugOptions debugOptions) {
@@ -247,6 +239,26 @@ class FlutterSlidesModel extends Model {
       _update();
     }
   }
+
+  void modifySlide(int index, Map json) {
+
+  }
+
+  void reorderSlides(int fromIndex, int toIndex) {
+    _undoStack.add(_currentSlides);
+    _redoStack.clear();
+
+    _currentSlides = _currentCopy();
+    final slides = (_currentSlides['slides'] as List);
+    final slide = slides.removeAt(fromIndex);
+    slides.insert(toIndex, slide);
+
+    _update();
+  }
+
+  void modifyMetadata(Map json) {}
+
+  void updateReplaceValues(Map json) {}
 
   Map _currentCopy() => json.decode(json.encode(_currentSlides));
 }
