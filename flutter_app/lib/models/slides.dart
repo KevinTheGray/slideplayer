@@ -240,18 +240,29 @@ class FlutterSlidesModel extends Model {
     }
   }
 
-  void modifySlide(int index, Map json) {
-
-  }
-
-  void reorderSlides(int fromIndex, int toIndex) {
+  int reorderSlides(int oldIndex, int newIndex) {
     _undoStack.add(_currentSlides);
     _redoStack.clear();
 
     _currentSlides = _currentCopy();
     final slides = (_currentSlides['slides'] as List);
-    final slide = slides.removeAt(fromIndex);
-    slides.insert(toIndex, slide);
+
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final element = slides.removeAt(oldIndex);
+    slides.insert(newIndex, element);
+
+    _update();
+    return newIndex;
+  }
+
+  void modifySlide(int index, Map json) {
+    _undoStack.add(_currentSlides);
+    _redoStack.clear();
+
+    _currentSlides = _currentCopy();
+    (_currentSlides['slides'] as List)[index] = json;
 
     _update();
   }

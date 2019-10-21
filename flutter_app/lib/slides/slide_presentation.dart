@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slides/workspace/load_presentation_screen.dart';
+import 'package:flutter_slides/workspace/slide_editor.dart';
 import 'package:menubar/menubar.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -145,7 +146,7 @@ class _SlidePresentationState extends State<SlidePresentation>
                         width: max(_slideListController.value,
                                 _editorController.value) *
                             15.0),
-                    Container(width: _editorController.value * 300.0),
+                    Container(width: _editorController.value * 400.0),
                   ],
                 ),
                 _slideListController.value <= 0.01
@@ -214,9 +215,9 @@ class _SlidePresentationState extends State<SlidePresentation>
 
   Widget _editorWidget(FlutterSlidesModel model) {
     return Transform.translate(
-      offset: Offset(300.0 + _editorController.value * -300.0, 0.0),
+      offset: Offset(400.0 + _editorController.value * -400.0, 0.0),
       child: Container(
-        width: 300.0,
+        width: 400.0,
         color: model.presentationMetadata.slidesListBGColor,
         child: DefaultTabController(
           length: 2,
@@ -316,7 +317,19 @@ class _SlidePresentationState extends State<SlidePresentation>
                     ),
                   ],
                 ),
-                Icon(Icons.slideshow),
+                Builder(builder: (context) {
+                  final currSlide = model.slides[_currentSlideIndex];
+                  return ListView(
+                    children: <Widget>[
+                      SlideEditor(
+                        slide: currSlide,
+                        onUpdated: (json) {
+                          model.modifySlide(_currentSlideIndex, json);
+                        },
+                      ),
+                    ],
+                  );
+                }),
               ],
             ),
           ),
@@ -337,13 +350,13 @@ class _SlidePresentationState extends State<SlidePresentation>
             return true;
           },
           child: ReorderableListView(
+            // todo (kg) need to fix this,
+            // (when you close the slide menu, it doesn't maintain position)
 //            controller: ScrollController(
 //              initialScrollOffset: _lastSlideListScrollOffset,
 //            ),
-            onReorder: (indexA, indexB) {
-              final indexBSafe = min(indexB, model.slides.length - 1);
-              model.reorderSlides(indexA, indexBSafe);
-              _currentSlideIndex = indexBSafe;
+            onReorder: (oldIndex, newIndex) {
+              _currentSlideIndex  = model.reorderSlides(oldIndex, newIndex);
             },
             children: List<Widget>.generate(model.slides.length, (index) {
               return GestureDetector(
