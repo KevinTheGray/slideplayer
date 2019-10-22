@@ -7,6 +7,7 @@ class Slide {
   final Color backgroundColor;
   final SlideFactors slideFactors;
   final bool animatedTransition;
+  final String notes;
 
   Slide({
     @required this.content,
@@ -14,5 +15,6 @@ class Slide {
     @required this.advancementCount,
     @required this.backgroundColor,
     @required this.animatedTransition,
+    @required this.notes,
   });
 }

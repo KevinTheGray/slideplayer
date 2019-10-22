@@ -87,6 +87,7 @@ class _SlideEditorState extends State<SlideEditor> {
       "bg_color": "${bgColorController.value.text}",
       'advancement_count': int.tryParse(advCountController.value.text) ?? 0,
       'animated_transition': animatedTransitionState,
+      'notes': widget.slide.notes,
       "content": currentContentState,
     });
   }

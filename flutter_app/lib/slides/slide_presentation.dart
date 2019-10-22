@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter_slides/models/slides.dart';
+import 'package:flutter_slides/plugins/notes_plugin.dart';
 import 'package:flutter_slides/slides/slide_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -122,6 +123,8 @@ class _SlidePresentationState extends State<SlidePresentation>
                 model.slides[_currentSlideIndex].animatedTransition ||
                     model.presentationMetadata.animateSlideTransitions;
           }
+          final slide = model.slides[_currentSlideIndex];
+          updateNotes(slide.notes);
           return Container(
             color: model.presentationMetadata.projectBGColor,
             constraints: BoxConstraints.expand(),
@@ -438,7 +441,6 @@ class _SlidePresentationState extends State<SlidePresentation>
       case RawKeyEventDataMacOs:
         final RawKeyEventDataMacOs data = event.data;
         keyCode = data.keyCode;
-        print(keyCode);
         if (keyCode == 33) {
           if (_slideListController?.status == AnimationStatus.forward ||
               _slideListController?.status == AnimationStatus.completed) {

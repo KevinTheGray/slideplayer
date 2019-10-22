@@ -108,7 +108,6 @@ class FlutterSlidesModel extends Model {
       if (replaceValues != null) {
         json = jsonDecode(_replaceValues(fileString, replaceValues));
       }
-      print('hi');
       _currentSlides = json;
       _undoStack.clear();
       _redoStack.clear();
@@ -161,13 +160,16 @@ class FlutterSlidesModel extends Model {
         bool animatedTransition = slide['animated_transition'] ?? false;
         Color slideBGColor =
             ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
+        String notes = slide['notes'] ?? 'No Notes';
         slideList.add(
           Slide(
-              content: contentList,
-              slideFactors: slideFactors,
-              advancementCount: advancementCount,
-              backgroundColor: slideBGColor,
-              animatedTransition: animatedTransition),
+            content: contentList,
+            slideFactors: slideFactors,
+            advancementCount: advancementCount,
+            backgroundColor: slideBGColor,
+            animatedTransition: animatedTransition,
+            notes: notes,
+          ),
         );
       }
       loadedSlides.slides = slideList;
