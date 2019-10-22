@@ -30,6 +30,7 @@
 		33D1A10522148B93006C7A3E /* FlutterMacOS.framework in Bundle Framework */ = {isa = PBXBuildFile; fileRef = 33D1A10322148B71006C7A3E /* FlutterMacOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		827745D0AD73EC99B1716E66 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40D3BFF86FAF07A4BDF80A3 /* Pods_Runner.framework */; };
 		CA115112235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA115111235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift */; };
+		CA115116235FA05E00C1C5C4 /* Notes.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA115115235FA05E00C1C5C4 /* Notes.xib */; };
 		CAB607DF234E6518009DF4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAB607DE234E6518009DF4DD /* GoogleService-Info.plist */; };
 		CAB607E4234F9396009DF4DD /* FirebaseDatabasePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB607E3234F9396009DF4DD /* FirebaseDatabasePlugin.m */; };
 		D73912F022F37F9E000D13A0 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D73912EF22F37F9E000D13A0 /* App.framework */; };
@@ -83,6 +84,7 @@
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		A119C1D947DE0C3A928AEFB4 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		CA115111235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesUpdaterPlugin.swift; sourceTree = "<group>"; };
+		CA115115235FA05E00C1C5C4 /* Notes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Notes.xib; sourceTree = "<group>"; };
 		CAB607DE234E6518009DF4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CAB607E2234F9395009DF4DD /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		CAB607E3234F9396009DF4DD /* FirebaseDatabasePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirebaseDatabasePlugin.m; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				33CC10F22044A3C60003C045 /* Assets.xcassets */,
 				33CC10F42044A3C60003C045 /* MainMenu.xib */,
 				33CC10F72044A3C60003C045 /* Info.plist */,
+				CA115115235FA05E00C1C5C4 /* Notes.xib */,
 			);
 			name = Resources;
 			path = ..;
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
+				CA115116235FA05E00C1C5C4 /* Notes.xib in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
 				CAB607DF234E6518009DF4DD /* GoogleService-Info.plist in Resources */,
 			);
