@@ -31,6 +31,7 @@
 		827745D0AD73EC99B1716E66 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40D3BFF86FAF07A4BDF80A3 /* Pods_Runner.framework */; };
 		CA115112235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA115111235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift */; };
 		CA115116235FA05E00C1C5C4 /* Notes.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA115115235FA05E00C1C5C4 /* Notes.xib */; };
+		CA115118235FA73000C1C5C4 /* NotesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA115117235FA73000C1C5C4 /* NotesWindow.swift */; };
 		CAB607DF234E6518009DF4DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CAB607DE234E6518009DF4DD /* GoogleService-Info.plist */; };
 		CAB607E4234F9396009DF4DD /* FirebaseDatabasePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB607E3234F9396009DF4DD /* FirebaseDatabasePlugin.m */; };
 		D73912F022F37F9E000D13A0 /* App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D73912EF22F37F9E000D13A0 /* App.framework */; };
@@ -85,6 +86,7 @@
 		A119C1D947DE0C3A928AEFB4 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		CA115111235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesUpdaterPlugin.swift; sourceTree = "<group>"; };
 		CA115115235FA05E00C1C5C4 /* Notes.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Notes.xib; sourceTree = "<group>"; };
+		CA115117235FA73000C1C5C4 /* NotesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWindow.swift; sourceTree = "<group>"; };
 		CAB607DE234E6518009DF4DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CAB607E2234F9395009DF4DD /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		CAB607E3234F9396009DF4DD /* FirebaseDatabasePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirebaseDatabasePlugin.m; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				CAB607E1234F9358009DF4DD /* Plugins */,
 				33CC10F02044A3C60003C045 /* AppDelegate.swift */,
 				33CC11122044BFA00003C045 /* MainFlutterWindow.swift */,
+				CA115117235FA73000C1C5C4 /* NotesWindow.swift */,
 				33E51913231747F40026EE4D /* DebugProfile.entitlements */,
 				33E51914231749380026EE4D /* Release.entitlements */,
 				33CC11242044D66E0003C045 /* Resources */,
@@ -377,6 +380,7 @@
 				CA115112235F6AE000C1C5C4 /* NotesUpdaterPlugin.swift in Sources */,
 				33CC10F12044A3C60003C045 /* AppDelegate.swift in Sources */,
 				335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */,
+				CA115118235FA73000C1C5C4 /* NotesWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +473,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = io.flutter.flutterslides;
 				PRODUCT_NAME = "Flutter Slides";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -604,6 +609,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = io.flutter.flutterslides;
 				PRODUCT_NAME = "Flutter Slides";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -633,6 +639,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = io.flutter.flutterslides;
 				PRODUCT_NAME = "Flutter Slides";
 				PROVISIONING_PROFILE_SPECIFIER = "";

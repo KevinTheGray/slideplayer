@@ -15,7 +15,9 @@
 import Cocoa
 import FlutterMacOS
 
+
 class NotesUpdaterPlugin : NSObject, FlutterPlugin {
+  static var currentNotes: String = ""
   private let channel: FlutterMethodChannel
   static func register(with registrar: FlutterPluginRegistrar) {
     
@@ -32,7 +34,13 @@ class NotesUpdaterPlugin : NSObject, FlutterPlugin {
   func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     if (call.method == "update") {
       if let notes = call.arguments as? String {
-        print(notes)
+        NotesUpdaterPlugin.currentNotes = notes
+        for window in NSApplication.shared.windows {
+          if let notesWindow = window as? NotesWindow {
+            notesWindow.notes = NotesUpdaterPlugin.currentNotes
+          }
+        }
+        print(NotesUpdaterPlugin.currentNotes)
       }
     } else {
       result(FlutterMethodNotImplemented)
