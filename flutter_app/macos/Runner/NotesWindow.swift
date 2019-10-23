@@ -12,6 +12,8 @@ import Cocoa
 class NotesWindow: NSWindow, NSWindowDelegate {
   override func awakeFromNib() {
     super.awakeFromNib()
+    minSize.width = 800.0
+    minSize.height = 400.0
     self.delegate = self
     contentView?.layer?.backgroundColor = NSColor.white.cgColor
     contentView?.addSubview(notesView)
@@ -55,5 +57,5 @@ extension String {
     let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
     
     return ceil(boundingBox.height)
-    }
+  }
 }
