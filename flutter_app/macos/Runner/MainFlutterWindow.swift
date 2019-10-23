@@ -14,8 +14,6 @@
 
 import Cocoa
 import FlutterMacOS
-import FirebaseDatabase
-import FirebaseCore
 
 class MainFlutterWindow: NSWindow {
   override func awakeFromNib() {
