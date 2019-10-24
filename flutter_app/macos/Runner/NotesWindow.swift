@@ -17,6 +17,7 @@ class NotesWindow: NSWindow, NSWindowDelegate {
     self.delegate = self
     contentView?.layer?.backgroundColor = NSColor.white.cgColor
     contentView?.addSubview(notesView)
+    layoutNotestView()
   }
   
   func windowDidResize(_ notification: Notification) {
@@ -43,7 +44,7 @@ class NotesWindow: NSWindow, NSWindowDelegate {
     return textField
   }()
   
-  internal var notes: String = "" {
+  internal var notes: String = NotesUpdaterPlugin.currentNotes {
     didSet {
       notesView.stringValue = notes
       layoutNotestView()

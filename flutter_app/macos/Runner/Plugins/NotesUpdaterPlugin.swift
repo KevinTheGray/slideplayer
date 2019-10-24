@@ -40,8 +40,10 @@ class NotesUpdaterPlugin : NSObject, FlutterPlugin {
             notesWindow.notes = NotesUpdaterPlugin.currentNotes
           }
         }
-        print(NotesUpdaterPlugin.currentNotes)
       }
+    } else if (call.method == "show") {
+      let myWindowController = NSWindowController(windowNibName: NSNib.Name(rawValue: "Notes"))
+      myWindowController.showWindow(nil)
     } else {
       result(FlutterMethodNotImplemented)
     }

@@ -67,6 +67,12 @@ class _SlidePresentationState extends State<SlidePresentation>
             saveCurrent();
           },
         ),
+        MenuItem(
+          label: 'Show Notes',
+          onClicked: () {
+            showNoteWindow();
+          },
+        ),
       ]),
     ]);
   }
