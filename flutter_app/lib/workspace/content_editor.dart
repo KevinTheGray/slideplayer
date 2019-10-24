@@ -83,15 +83,16 @@ class _ContentEditorState extends State<ContentEditor> {
   }
 
   void update() {
+    final updatedMap = {}..addAll(currentContentState);
     widget.onUpdated(
-      {
-        "type": "rect",
-        "x": num.tryParse(xPosController.value.text) ?? 0.0,
-        "y": num.tryParse(yPosController.value.text) ?? 0.0,
-        "width": num.tryParse(widthController.value.text) ?? 0.0,
-        "height": num.tryParse(heightController.value.text) ?? 0.0,
-        "fill": currentContentState['fill']
-      },
+      updatedMap
+        ..addAll({
+          "x": num.tryParse(xPosController.value.text) ?? 0.0,
+          "y": num.tryParse(yPosController.value.text) ?? 0.0,
+          "width": num.tryParse(widthController.value.text) ?? 0.0,
+          "height": num.tryParse(heightController.value.text) ?? 0.0,
+          "fill": currentContentState['fill']
+        }),
     );
   }
 }
