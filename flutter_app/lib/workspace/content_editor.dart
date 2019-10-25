@@ -41,33 +41,23 @@ class _ContentEditorState extends State<ContentEditor> {
         (widget.content['advancement_step'] ?? 0).toString();
     widthController.text = widget.content['width'].toString();
     heightController.text = widget.content['height'].toString();
-    titleController.text = widget.content['editor_title']?.toString();
+    titleController.text = (widget.content['editor_title'] ?? '').toString();
 
-    if (widget.content.containsKey('animation')) {
-      aniCurveController.text = widget.content['animation']['curve'];
-      aniDurationController.text =
-          (widget.content['animation']['duration_in_milliseconds'] ?? 0)
-              .toString();
-      aniDelayController.text =
-          (widget.content['animation']['delay_in_milliseconds'] ?? 0)
-              .toString();
-      aniOffsetXController.text =
-          (widget.content['animation']['offset_x'] ?? 0).toString();
-      aniOffsetYController.text =
-          (widget.content['animation']['offset_y'] ?? 0).toString();
-      aniScaleStartController.text =
-          (widget.content['animation']['scale_start'] ?? 1.0).toString();
-      aniScaleEndController.text =
-          (widget.content['animation']['scale_end'] ?? 1.0).toString();
-      aniScaleAlignController.text =
-          (widget.content['animation']['scale_align'] ?? 'center');
-      opacityStartController.text =
-          (widget.content['animation']['opacity_start'] ?? 1.0).toString();
-      opacityEndController.text =
-          (widget.content['animation']['opacity_end'] ?? 1.0).toString();
-      rotationController.text =
-          (widget.content['animation']['rotation'] ?? 0.0).toString();
-    }
+    final animation = widget.content['animation'] ?? {};
+    aniCurveController.text = animation['curve'];
+    aniDurationController.text =
+        (animation['duration_in_milliseconds'] ?? 0).toString();
+    aniDelayController.text =
+        (animation['delay_in_milliseconds'] ?? 0).toString();
+    aniOffsetXController.text = (animation['offset_x'] ?? 0).toString();
+    aniOffsetYController.text = (animation['offset_y'] ?? 0).toString();
+    aniScaleStartController.text = (animation['scale_start'] ?? 1.0).toString();
+    aniScaleEndController.text = (animation['scale_end'] ?? 1.0).toString();
+    aniScaleAlignController.text = (animation['scale_align'] ?? 'center');
+    opacityStartController.text =
+        (animation['opacity_start'] ?? 1.0).toString();
+    opacityEndController.text = (animation['opacity_end'] ?? 1.0).toString();
+    rotationController.text = (animation['rotation'] ?? 0.0).toString();
     currentContentState = widget.content;
     return ExpansionTile(
       title: Text(
