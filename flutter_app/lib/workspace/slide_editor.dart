@@ -24,6 +24,7 @@ class SlideEditor extends StatefulWidget {
 class _SlideEditorState extends State<SlideEditor> {
   TextEditingController bgColorController = TextEditingController();
   TextEditingController advCountController = TextEditingController();
+  TextEditingController notesController = TextEditingController();
   bool animatedTransitionState;
   List<dynamic> currentContentState;
   @override
@@ -35,6 +36,7 @@ class _SlideEditorState extends State<SlideEditor> {
   Widget build(BuildContext context) {
     bgColorController.text = widget.slide.backgroundColor.toHexString();
     advCountController.text = widget.slide.advancementCount.toString();
+    notesController.text = widget.slide.notes;
     animatedTransitionState = widget.slide.animatedTransition;
     currentContentState = widget.slide.content;
 
@@ -42,41 +44,79 @@ class _SlideEditorState extends State<SlideEditor> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Text('Background Color:'),
-        TextField(
-          controller: bgColorController,
-          onSubmitted: (val) {
-            update();
-          },
-        ),
-        Text('Advancement Count:'),
-        TextField(
-          controller: advCountController,
-          onSubmitted: (val) {
-            update();
-          },
-        ),
-        Text('Animated Transition:'),
-        Checkbox(
-          value: animatedTransitionState,
-          onChanged: (value) {
-            animatedTransitionState = value;
-            update();
-          },
-        ),
-        Text('Content:'),
-        ...List<Widget>.generate(
-          widget.slide.content.length,
-          (index) {
-            return ContentEditor(
-              content: widget.slide.content[index],
-              onUpdated: (map) {
-                currentContentState = List()..addAll(currentContentState);
-                currentContentState[index] = map;
+        ExpansionTile(
+          title: Text('Slide Options'),
+          children: <Widget>[
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Background Color:'),
+            ),
+            TextField(
+              controller: bgColorController,
+              onSubmitted: (val) {
                 update();
               },
-            );
-          },
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Animated Transition:'),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Checkbox(
+                value: animatedTransitionState,
+                onChanged: (value) {
+                  animatedTransitionState = value;
+                  update();
+                },
+              ),
+            ),
+          ],
+        ),
+        ExpansionTile(
+          title: Text('Content'),
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text('Advancement Count:'),
+                Expanded(
+                  child: TextField(
+                    controller: advCountController,
+                    onSubmitted: (val) {
+                      update();
+                    },
+                  ),
+                ),
+              ],
+            ),
+            ...List<Widget>.generate(
+              widget.slide.content.length,
+              (index) {
+                return ContentEditor(
+                  content: widget.slide.content[index],
+                  onUpdated: (map) {
+                    currentContentState = List()..addAll(currentContentState);
+                    currentContentState[index] = map;
+                    update();
+                  },
+                );
+              },
+            )
+          ],
+        ),
+        ExpansionTile(
+          title: Text('Notes:'),
+          children: <Widget>[
+            TextField(
+              controller: notesController,
+              maxLines: null,
+              onSubmitted: (val) {
+                update();
+              },
+            ),
+          ],
         ),
       ],
     );
@@ -87,7 +127,7 @@ class _SlideEditorState extends State<SlideEditor> {
       "bg_color": "${bgColorController.value.text}",
       'advancement_count': int.tryParse(advCountController.value.text) ?? 0,
       'animated_transition': animatedTransitionState,
-      'notes': widget.slide.notes,
+      'notes': notesController.value.text,
       "content": currentContentState,
     });
   }

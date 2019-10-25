@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slides/models/slides.dart';
 
 class ContentEditor extends StatefulWidget {
   final Map content;
@@ -12,6 +13,8 @@ class ContentEditor extends StatefulWidget {
 }
 
 class _ContentEditorState extends State<ContentEditor> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController advStepController = TextEditingController();
   TextEditingController xPosController = TextEditingController();
   TextEditingController yPosController = TextEditingController();
   TextEditingController widthController = TextEditingController();
@@ -21,63 +24,123 @@ class _ContentEditorState extends State<ContentEditor> {
   Widget build(BuildContext context) {
     xPosController.text = widget.content['x'].toString();
     yPosController.text = widget.content['y'].toString();
+    advStepController.text =
+        (widget.content['advancement_step'] ?? 0).toString();
     widthController.text = widget.content['width'].toString();
     heightController.text = widget.content['height'].toString();
+    titleController.text = widget.content['editor_title']?.toString();
     currentContentState = widget.content;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+    return ExpansionTile(
+      title: Text(
+          '${widget.content['editor_title'] ?? '${widget.content['type']}'}'),
       children: <Widget>[
-        Text(widget.content['type']),
-        Row(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text('X:'),
-            Expanded(
-              child: TextField(
-                controller: xPosController,
-                onSubmitted: (val) {
-                  update();
-                },
-              ),
+            ExpansionTile(
+              title: Text('Metadata'),
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('type: ${widget.content['type']}'),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('title:'),
+                    Expanded(
+                      child: TextField(
+                        controller: titleController,
+                        onSubmitted: (val) {
+                          update();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('Advancement Step:'),
+                    Expanded(
+                      child: TextField(
+                        controller: advStepController,
+                        onSubmitted: (val) {
+                          update();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            Text('Y:'),
-            Expanded(
-              child: TextField(
-                controller: yPosController,
-                onSubmitted: (val) {
-                  update();
-                },
-              ),
+            ExpansionTile(
+              title: Text('Position/Size'),
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('X:'),
+                    Expanded(
+                      child: TextField(
+                        controller: xPosController,
+                        onSubmitted: (val) {
+                          update();
+                        },
+                      ),
+                    ),
+                    Text('Y:'),
+                    Expanded(
+                      child: TextField(
+                        controller: yPosController,
+                        onSubmitted: (val) {
+                          update();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('W:'),
+                    Expanded(
+                      child: TextField(
+                        controller: widthController,
+                        onSubmitted: (val) {
+                          update();
+                        },
+                      ),
+                    ),
+                    Text('H:'),
+                    Expanded(
+                      child: TextField(
+                        controller: heightController,
+                        onSubmitted: (val) {
+                          update();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
+            ExpansionTile(
+              title: Text('Content Values'),
+              children: <Widget>[],
+            ),
+            ExpansionTile(
+              title: Text('Animation'),
+              children: <Widget>[],
+            ),
+            Padding(padding: EdgeInsets.only(top: 20.0)),
           ],
         ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text('W:'),
-            Expanded(
-              child: TextField(
-                controller: widthController,
-                onSubmitted: (val) {
-                  update();
-                },
-              ),
-            ),
-            Text('H:'),
-            Expanded(
-              child: TextField(
-                controller: heightController,
-                onSubmitted: (val) {
-                  update();
-                },
-              ),
-            ),
-          ],
-        ),
-        Padding(padding: EdgeInsets.only(top: 20.0)),
       ],
     );
   }
@@ -87,11 +150,14 @@ class _ContentEditorState extends State<ContentEditor> {
     widget.onUpdated(
       updatedMap
         ..addAll({
+          "editor_title": titleController.value.text.isEmpty
+              ? null
+              : titleController.value.text,
           "x": num.tryParse(xPosController.value.text) ?? 0.0,
           "y": num.tryParse(yPosController.value.text) ?? 0.0,
           "width": num.tryParse(widthController.value.text) ?? 0.0,
           "height": num.tryParse(heightController.value.text) ?? 0.0,
-          "fill": currentContentState['fill']
+          "advancement_step": num.tryParse(advStepController.value.text) ?? 0,
         }),
     );
   }

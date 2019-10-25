@@ -246,47 +246,54 @@ class _SlidePresentationState extends State<SlidePresentation>
               children: [
                 ListView(
                   children: <Widget>[
-                    Text('Debug:'),
-                    Row(
+                    ExpansionTile(
+                      title: Text('Debug'),
                       children: <Widget>[
-                        Checkbox(
-                          value: model.debugOptions.showDebugContainers,
-                          onChanged: (value) {
-                            model.debugOptions = model.debugOptions.copyWith(
-                              showDebugContainers: value,
-                            );
-                          },
+                        Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: model.debugOptions.showDebugContainers,
+                              onChanged: (value) {
+                                model.debugOptions =
+                                    model.debugOptions.copyWith(
+                                  showDebugContainers: value,
+                                );
+                              },
+                            ),
+                            Text('Show Content Borders'),
+                          ],
                         ),
-                        Text('Show Content Borders'),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Checkbox(
-                          value: model.debugOptions.autoAdvance,
-                          onChanged: (value) {
-                            model.debugOptions = model.debugOptions.copyWith(
-                              autoAdvance: value,
-                            );
-                          },
+                        Row(
+                          children: <Widget>[
+                            Checkbox(
+                              value: model.debugOptions.autoAdvance,
+                              onChanged: (value) {
+                                model.debugOptions =
+                                    model.debugOptions.copyWith(
+                                  autoAdvance: value,
+                                );
+                              },
+                            ),
+                            Text('Auto-Advance'),
+                          ],
                         ),
-                        Text('Auto-Advance'),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text('A-A Duration'),
-                        Expanded(
-                          child: TextField(
-                            onSubmitted: (value) {
-                              model.debugOptions = model.debugOptions.copyWith(
-                                autoAdvanceDurationMillis: int.tryParse(
-                                      value,
-                                    ) ??
-                                    30000,
-                              );
-                            },
-                          ),
+                        Row(
+                          children: <Widget>[
+                            Text('A-A Duration'),
+                            Expanded(
+                              child: TextField(
+                                onSubmitted: (value) {
+                                  model.debugOptions =
+                                      model.debugOptions.copyWith(
+                                    autoAdvanceDurationMillis: int.tryParse(
+                                          value,
+                                        ) ??
+                                        30000,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -365,7 +372,7 @@ class _SlidePresentationState extends State<SlidePresentation>
 //              initialScrollOffset: _lastSlideListScrollOffset,
 //            ),
             onReorder: (oldIndex, newIndex) {
-              _currentSlideIndex  = model.reorderSlides(oldIndex, newIndex);
+              _currentSlideIndex = model.reorderSlides(oldIndex, newIndex);
             },
             children: List<Widget>.generate(model.slides.length, (index) {
               return GestureDetector(
