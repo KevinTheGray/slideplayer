@@ -319,7 +319,6 @@ class _ContentEditorState extends State<ContentEditor> {
   }
 
   void update() {
-    print('boop');
     final updatedMap = {}..addAll(currentContentState);
     final Map animationMap = {}..addAll(currentContentState['animation'] ?? {});
     animationMap.addAll({

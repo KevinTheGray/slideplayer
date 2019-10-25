@@ -140,7 +140,8 @@ class SlidePageState extends State<SlidePage>
       turns: AlwaysStoppedAnimation(rotationDegrees / 360),
       child: contentWidget,
     );
-    if (contentMap.containsKey('animation')) {
+    if (contentMap.containsKey('animation') &&
+        (contentMap['animation']['duration_in_milliseconds'] ?? 0) > 1) {
       contentWidget = AnimatedContentWidget(
         child: contentWidget,
         dataMap: contentMap['animation'],
