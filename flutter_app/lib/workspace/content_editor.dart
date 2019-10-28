@@ -78,7 +78,7 @@ class _ContentEditorState extends State<ContentEditor> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text('title:'),
+                    Text('Title:'),
                     Expanded(
                       child: TextField(
                         controller: titleController,

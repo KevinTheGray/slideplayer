@@ -160,7 +160,7 @@ class FlutterSlidesModel extends Model {
         bool animatedTransition = slide['animated_transition'] ?? false;
         Color slideBGColor =
             ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
-        String notes = slide['notes'] ?? 'No Notes';
+        String notes = slide['notes'] ?? '';
         slideList.add(
           Slide(
             content: contentList,
