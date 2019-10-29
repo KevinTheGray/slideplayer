@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slides/models/slides.dart';
+import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
+import 'package:flutter_slides/workspace/content_value_editors/label_content_editor.dart';
+
+import 'content_value_editors/rect_content_editor.dart';
 
 class ContentEditor extends StatefulWidget {
   final Map content;
@@ -32,6 +36,9 @@ class _ContentEditorState extends State<ContentEditor> {
   TextEditingController opacityEndController = TextEditingController();
   TextEditingController rotationController = TextEditingController();
 
+  ContentValueEditorController contentValueEditorController =
+      ContentValueEditorController();
+
   Map currentContentState;
   @override
   Widget build(BuildContext context) {
@@ -58,251 +65,287 @@ class _ContentEditorState extends State<ContentEditor> {
         (animation['opacity_start'] ?? 1.0).toString();
     opacityEndController.text = (animation['opacity_end'] ?? 1.0).toString();
     rotationController.text = (animation['rotation'] ?? 0.0).toString();
+    contentValueEditorController.listener = null;
     currentContentState = widget.content;
+    String type = widget.content['type'];
     return ExpansionTile(
       title: Text(
           '${widget.content['editor_title'] ?? '${widget.content['type']}'}'),
       children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            ExpansionTile(
-              title: Text('Metadata'),
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('type: ${widget.content['type']}'),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Title:'),
-                    Expanded(
-                      child: TextField(
-                        controller: titleController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
+        Padding(
+          padding: EdgeInsets.only(left: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              ExpansionTile(
+                title: Text('Metadata'),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30.0),
+                    child: Column(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text('type: ${widget.content['type']}'),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Title: '),
+                            Expanded(
+                              child: TextField(
+                                controller: titleController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Advancement Step: '),
+                            Expanded(
+                              child: TextField(
+                                controller: advStepController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Advancement Step:'),
-                    Expanded(
-                      child: TextField(
-                        controller: advStepController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
+                  ),
+                ],
+              ),
+              ExpansionTile(
+                title: Text('Position/Size'),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30.0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text('X: '),
+                            Expanded(
+                              child: TextField(
+                                controller: xPosController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                            Text('Y: '),
+                            Expanded(
+                              child: TextField(
+                                controller: yPosController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('W: '),
+                            Expanded(
+                              child: TextField(
+                                controller: widthController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                            Text('H: '),
+                            Expanded(
+                              child: TextField(
+                                controller: heightController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
-            ExpansionTile(
-              title: Text('Position/Size'),
-              children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('X:'),
-                    Expanded(
-                      child: TextField(
-                        controller: xPosController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
+                  )
+                ],
+              ),
+              ExpansionTile(
+                title: Text('Content Values'),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30.0),
+                    child: Column(
+                      children: <Widget>[
+                        if (type == 'rect')
+                          RectContentEditor(
+                            content: widget.content,
+                            controller: contentValueEditorController,
+                            onUpdated: () {
+                              update();
+                            },
+                          ),
+                        if (type == 'label')
+                          LabelContentEditor(
+                            content: widget.content,
+                            controller: contentValueEditorController,
+                            onUpdated: () {
+                              update();
+                            },
+                          ),
+                      ],
                     ),
-                    Text('Y:'),
-                    Expanded(
-                      child: TextField(
-                        controller: yPosController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
+                  )
+                ],
+              ),
+              ExpansionTile(
+                title: Text('Animation'),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30.0),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text('Curve: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniCurveController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Duration: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniDurationController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                            Text('Delay: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniDelayController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Offset X: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniOffsetXController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                            Text('Offset Y: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniOffsetYController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Scale Start: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniScaleStartController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                            Text('Scale End: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniScaleEndController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Scale Align: '),
+                            Expanded(
+                              child: TextField(
+                                controller: aniScaleAlignController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Opacity Start:'),
+                            Expanded(
+                              child: TextField(
+                                controller: opacityStartController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                            Text('Opacity End:'),
+                            Expanded(
+                              child: TextField(
+                                controller: opacityEndController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('Roatation:'),
+                            Expanded(
+                              child: TextField(
+                                controller: rotationController,
+                                onSubmitted: (val) {
+                                  update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('W:'),
-                    Expanded(
-                      child: TextField(
-                        controller: widthController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                    Text('H:'),
-                    Expanded(
-                      child: TextField(
-                        controller: heightController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            ExpansionTile(
-              title: Text('Content Values'),
-              children: <Widget>[],
-            ),
-            ExpansionTile(
-              title: Text('Animation'),
-              children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Curve:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniCurveController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Duration:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniDurationController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                    Text('Delay:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniDelayController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Offset X:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniOffsetXController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                    Text('Offset Y:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniOffsetYController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Scale Start:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniScaleStartController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                    Text('Scale End:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniScaleEndController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                    Text('Align:'),
-                    Expanded(
-                      child: TextField(
-                        controller: aniScaleAlignController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Opacity Start:'),
-                    Expanded(
-                      child: TextField(
-                        controller: opacityStartController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                    Text('Opacity End:'),
-                    Expanded(
-                      child: TextField(
-                        controller: opacityEndController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Text('Roatation:'),
-                    Expanded(
-                      child: TextField(
-                        controller: rotationController,
-                        onSubmitted: (val) {
-                          update();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Padding(padding: EdgeInsets.only(top: 20.0)),
-          ],
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.only(top: 20.0)),
+            ],
+          ),
         ),
       ],
     );
@@ -311,6 +354,9 @@ class _ContentEditorState extends State<ContentEditor> {
   void update() {
     final updatedMap = {}..addAll(currentContentState);
     final Map animationMap = {}..addAll(currentContentState['animation'] ?? {});
+    final Map contentValueMap = {}..addAll(
+        contentValueEditorController.getContentValues(),
+      );
     animationMap.addAll({
       'curve': aniCurveController.value?.text ?? '',
       'duration_in_milliseconds':
@@ -338,7 +384,8 @@ class _ContentEditorState extends State<ContentEditor> {
           "height": num.tryParse(heightController.value.text) ?? 0.0,
           "advancement_step": num.tryParse(advStepController.value.text) ?? 0,
           "animation": animationMap,
-        }),
+        })
+        ..addAll(contentValueMap),
     );
   }
 }

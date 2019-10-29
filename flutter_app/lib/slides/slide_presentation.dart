@@ -228,92 +228,88 @@ class _SlidePresentationState extends State<SlidePresentation>
       child: Container(
         width: 400.0,
         color: model.presentationMetadata.slidesListBGColor,
-        child: DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            backgroundColor: model.presentationMetadata.slidesListBGColor,
-            appBar: AppBar(
-              backgroundColor:
-                  model.presentationMetadata.slidesListHighlightColor,
-              bottom: TabBar(
-                tabs: [
-                  Tab(icon: Icon(Icons.settings)),
-                  Tab(icon: Icon(Icons.slideshow)),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: [
-                ListView(
-                  children: <Widget>[
-                    ExpansionTile(
-                      title: Text('Debug'),
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Checkbox(
-                              value: model.debugOptions.showDebugContainers,
-                              onChanged: (value) {
-                                model.debugOptions =
-                                    model.debugOptions.copyWith(
-                                  showDebugContainers: value,
-                                );
-                              },
-                            ),
-                            Text('Show Content Borders'),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Checkbox(
-                              value: model.debugOptions.autoAdvance,
-                              onChanged: (value) {
-                                model.debugOptions =
-                                    model.debugOptions.copyWith(
-                                  autoAdvance: value,
-                                );
-                              },
-                            ),
-                            Text('Auto-Advance'),
-                          ],
-                        ),
-                        Row(
-                          children: <Widget>[
-                            Text('A-A Duration'),
-                            Expanded(
-                              child: TextField(
-                                onSubmitted: (value) {
-                                  model.debugOptions =
-                                      model.debugOptions.copyWith(
-                                    autoAdvanceDurationMillis: int.tryParse(
-                                          value,
-                                        ) ??
-                                        30000,
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Builder(builder: (context) {
-                  final currSlide = model.slides[_currentSlideIndex];
-                  return ListView(
+        child: Scaffold(
+          backgroundColor: model.presentationMetadata.slidesListBGColor,
+          body: Builder(
+            builder: (context) {
+              final currSlide = model.slides[_currentSlideIndex];
+              return ListView(
+                children: <Widget>[
+                  ExpansionTile(
+                    title: Text('Slide'),
                     children: <Widget>[
-                      SlideEditor(
-                        slide: currSlide,
-                        onUpdated: (json) {
-                          model.modifySlide(_currentSlideIndex, json);
-                        },
+                      Padding(
+                        padding: EdgeInsets.only(left: 20.0),
+                        child: SlideEditor(
+                          slide: currSlide,
+                          onUpdated: (json) {
+                            model.modifySlide(_currentSlideIndex, json);
+                          },
+                        ),
                       ),
                     ],
-                  );
-                }),
-              ],
-            ),
+                  ),
+                  ExpansionTile(
+                    title: Text('Debug'),
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 30.0),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Text('Show Content Borders'),
+                                Checkbox(
+                                  value: model.debugOptions.showDebugContainers,
+                                  onChanged: (value) {
+                                    model.debugOptions =
+                                        model.debugOptions.copyWith(
+                                      showDebugContainers: value,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Text('Auto-Advance'),
+                                Checkbox(
+                                  value: model.debugOptions.autoAdvance,
+                                  onChanged: (value) {
+                                    model.debugOptions =
+                                        model.debugOptions.copyWith(
+                                      autoAdvance: value,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Text('A-A Duration'),
+                                Expanded(
+                                  child: TextField(
+                                    onSubmitted: (value) {
+                                      model.debugOptions =
+                                          model.debugOptions.copyWith(
+                                        autoAdvanceDurationMillis: int.tryParse(
+                                              value,
+                                            ) ??
+                                            30000,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -419,11 +415,8 @@ class _SlidePresentationState extends State<SlidePresentation>
     switch (event.data.runtimeType) {
       case RawKeyEventDataMacOs:
         final RawKeyEventDataMacOs data = event.data;
-        if (event.isMetaPressed) {
-          print('yaah!');
-        }
+        if (event.isMetaPressed) {}
         keyCode = data.keyCode;
-        print(keyCode);
         if (keyCode == 33) {
           if (_slideListController?.status == AnimationStatus.forward ||
               _slideListController?.status == AnimationStatus.completed) {

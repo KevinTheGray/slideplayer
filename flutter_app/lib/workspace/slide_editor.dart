@@ -47,28 +47,36 @@ class _SlideEditorState extends State<SlideEditor> {
         ExpansionTile(
           title: Text('Slide Options'),
           children: <Widget>[
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Background Color:'),
-            ),
-            TextField(
-              controller: bgColorController,
-              onSubmitted: (val) {
-                update();
-              },
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Animated Transition:'),
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Checkbox(
-                value: animatedTransitionState,
-                onChanged: (value) {
-                  animatedTransitionState = value;
-                  update();
-                },
+            Padding(
+              padding: EdgeInsets.only(left: 30.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text('Background Color: '),
+                      Expanded(
+                        child: TextField(
+                          controller: bgColorController,
+                          onSubmitted: (val) {
+                            update();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text('Animated Transition:'),
+                      Checkbox(
+                        value: animatedTransitionState,
+                        onChanged: (value) {
+                          animatedTransitionState = value;
+                          update();
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
@@ -76,45 +84,56 @@ class _SlideEditorState extends State<SlideEditor> {
         ExpansionTile(
           title: Text('Content'),
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Text('Advancement Count:'),
-                Expanded(
-                  child: TextField(
-                    controller: advCountController,
-                    onSubmitted: (val) {
-                      update();
+            Padding(
+              padding: EdgeInsets.only(left: 30.0),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Advancement Count:'),
+                      Expanded(
+                        child: TextField(
+                          controller: advCountController,
+                          onSubmitted: (val) {
+                            update();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  ...List<Widget>.generate(
+                    widget.slide.content.length,
+                    (index) {
+                      return ContentEditor(
+                        content: widget.slide.content[index],
+                        onUpdated: (map) {
+                          currentContentState = List()
+                            ..addAll(currentContentState);
+                          currentContentState[index] = map;
+                          update();
+                        },
+                      );
                     },
                   ),
-                ),
-              ],
-            ),
-            ...List<Widget>.generate(
-              widget.slide.content.length,
-              (index) {
-                return ContentEditor(
-                  content: widget.slide.content[index],
-                  onUpdated: (map) {
-                    currentContentState = List()..addAll(currentContentState);
-                    currentContentState[index] = map;
-                    update();
-                  },
-                );
-              },
+                ],
+              ),
             )
           ],
         ),
         ExpansionTile(
           title: Text('Notes:'),
           children: <Widget>[
-            TextField(
-              controller: notesController,
-              maxLines: null,
-              onSubmitted: (val) {
-                update();
-              },
+            Padding(
+              padding: EdgeInsets.only(left: 30.0),
+              child: TextField(
+                controller: notesController,
+                maxLines: null,
+                onSubmitted: (val) {
+                  update();
+                },
+              ),
             ),
           ],
         ),
