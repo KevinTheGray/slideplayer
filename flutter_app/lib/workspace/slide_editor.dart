@@ -60,6 +60,7 @@ class _SlideEditorState extends State<SlideEditor> {
                           onSubmitted: (val) {
                             update();
                           },
+
                         ),
                       ),
                     ],
@@ -89,10 +90,8 @@ class _SlideEditorState extends State<SlideEditor> {
               child: Column(
                 children: <Widget>[
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text('Advancement Count:'),
+                      Text('Advancement Count: '),
                       Expanded(
                         child: TextField(
                           controller: advCountController,

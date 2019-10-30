@@ -128,9 +128,9 @@ class _SlidePresentationState extends State<SlidePresentation>
             animatedTransition =
                 model.slides[_currentSlideIndex].animatedTransition ||
                     model.presentationMetadata.animateSlideTransitions;
+            final slide = model.slides[_currentSlideIndex];
+            updateNotes(slide.notes);
           }
-          final slide = model.slides[_currentSlideIndex];
-          updateNotes(slide.notes);
           return Container(
             color: model.presentationMetadata.projectBGColor,
             constraints: BoxConstraints.expand(),
