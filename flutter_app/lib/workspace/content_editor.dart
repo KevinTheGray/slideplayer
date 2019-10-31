@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slides/models/slides.dart';
 import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
+import 'package:flutter_slides/workspace/content_value_editors/image_content_editor.dart';
 import 'package:flutter_slides/workspace/content_value_editors/label_content_editor.dart';
+import 'package:flutter_slides/workspace/content_value_editors/two_dimensions_content_editor.dart';
 
 import 'content_value_editors/rect_content_editor.dart';
 
@@ -193,6 +195,22 @@ class _ContentEditorState extends State<ContentEditor> {
                           ),
                         if (type == 'label')
                           LabelContentEditor(
+                            content: widget.content,
+                            controller: contentValueEditorController,
+                            onUpdated: () {
+                              update();
+                            },
+                          ),
+                        if (type == 'image')
+                          ImageContentEditor(
+                            content: widget.content,
+                            controller: contentValueEditorController,
+                            onUpdated: () {
+                              update();
+                            },
+                          ),
+                        if (type == 'flare_actor' || type == 'nima_actor')
+                          TwoDimensionsContentEditor(
                             content: widget.content,
                             controller: contentValueEditorController,
                             onUpdated: () {
