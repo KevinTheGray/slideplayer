@@ -107,6 +107,7 @@ class _SlideEditorState extends State<SlideEditor> {
                     (index) {
                       return ContentEditor(
                         content: widget.slide.content[index],
+                        index: index,
                         onUpdated: (map) {
                           currentContentState = List()
                             ..addAll(currentContentState);
@@ -116,6 +117,16 @@ class _SlideEditorState extends State<SlideEditor> {
                             currentContentState.removeAt(index);
                           }
                           update();
+                        },
+                        onMovePosition: (int toPosition) {
+                          if (toPosition >= 0 &&
+                              toPosition < currentContentState.length) {
+                            currentContentState = List()
+                              ..addAll(currentContentState);
+                            final element = currentContentState.removeAt(index);
+                            currentContentState.insert(toPosition, element);
+                            update();
+                          }
                         },
                       );
                     },

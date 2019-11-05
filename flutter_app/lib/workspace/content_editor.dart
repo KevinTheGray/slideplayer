@@ -9,10 +9,17 @@ import 'content_value_editors/rect_content_editor.dart';
 
 class ContentEditor extends StatefulWidget {
   final Map content;
+  final int index;
   final void Function(Map) onUpdated;
+  final void Function(int toPosition) onMovePosition;
 
-  const ContentEditor({Key key, this.content, this.onUpdated})
-      : super(key: key);
+  const ContentEditor({
+    Key key,
+    this.content,
+    this.onUpdated,
+    this.onMovePosition,
+    this.index,
+  }) : super(key: key);
 
   @override
   _ContentEditorState createState() => _ContentEditorState();
@@ -21,6 +28,7 @@ class ContentEditor extends StatefulWidget {
 class _ContentEditorState extends State<ContentEditor> {
   TextEditingController titleController = TextEditingController();
   TextEditingController advStepController = TextEditingController();
+  TextEditingController listPosController = TextEditingController();
   TextEditingController xPosController = TextEditingController();
   TextEditingController yPosController = TextEditingController();
   TextEditingController widthController = TextEditingController();
@@ -48,6 +56,7 @@ class _ContentEditorState extends State<ContentEditor> {
     yPosController.text = widget.content['y'].toString();
     advStepController.text =
         (widget.content['advancement_step'] ?? 0).toString();
+    listPosController.text = widget.index.toString();
     widthController.text = widget.content['width'].toString();
     heightController.text = widget.content['height'].toString();
     titleController.text = (widget.content['editor_title'] ?? '').toString();
@@ -69,6 +78,7 @@ class _ContentEditorState extends State<ContentEditor> {
     rotationController.text = (animation['rotation'] ?? 0.0).toString();
     contentValueEditorController.listener = null;
     currentContentState = widget.content;
+
     String type = widget.content['type'];
     return ExpansionTile(
       title: Text(
@@ -112,6 +122,22 @@ class _ContentEditorState extends State<ContentEditor> {
                                 controller: advStepController,
                                 onSubmitted: (val) {
                                   update();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text('List Position: '),
+                            Expanded(
+                              child: TextField(
+                                controller: listPosController,
+                                onSubmitted: (val) {
+                                  int index = int.tryParse(val);
+                                  if (index != null && index != widget.index) {
+                                    widget.onMovePosition(index);
+                                  }
                                 },
                               ),
                             ),
