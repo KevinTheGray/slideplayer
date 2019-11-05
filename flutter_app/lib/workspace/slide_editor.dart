@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_slides/models/slide.dart';
 import 'package:flutter_slides/workspace/content_editor.dart';
 
@@ -60,7 +61,6 @@ class _SlideEditorState extends State<SlideEditor> {
                           onSubmitted: (val) {
                             update();
                           },
-
                         ),
                       ),
                     ],
@@ -127,11 +127,18 @@ class _SlideEditorState extends State<SlideEditor> {
             Padding(
               padding: EdgeInsets.only(left: 30.0),
               child: TextField(
+                focusNode: FocusNode(onKey: (node, event) {
+                  if (event.data is RawKeyEventDataMacOs) {
+                    final data = event.data as RawKeyEventDataMacOs;
+                    if (event.isMetaPressed && data.keyCode == 36) {
+                      node.unfocus();
+                      update();
+                    }
+                  }
+                  return true;
+                }),
                 controller: notesController,
                 maxLines: null,
-                onSubmitted: (val) {
-                  update();
-                },
               ),
             ),
           ],
