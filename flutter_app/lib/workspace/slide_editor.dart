@@ -110,7 +110,11 @@ class _SlideEditorState extends State<SlideEditor> {
                         onUpdated: (map) {
                           currentContentState = List()
                             ..addAll(currentContentState);
-                          currentContentState[index] = map;
+                          if (map != null) {
+                            currentContentState[index] = map;
+                          } else {
+                            currentContentState.removeAt(index);
+                          }
                           update();
                         },
                       );

@@ -361,6 +361,29 @@ class _ContentEditorState extends State<ContentEditor> {
                   )
                 ],
               ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(color: Colors.grey),
+                    ),
+                    Expanded(
+                      child: Container(color: Colors.blueAccent),
+                    ),
+                    Expanded(
+                      child: MaterialButton(
+                        onPressed: () {
+                          widget.onUpdated(null);
+                        },
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Padding(padding: EdgeInsets.only(top: 20.0)),
             ],
           ),
