@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slides/models/slide.dart';
+import 'package:flutter_slides/workspace/add_content_type_screen.dart';
 import 'package:flutter_slides/workspace/content_editor.dart';
 
 extension ColorDude on Color {
@@ -89,6 +90,43 @@ class _SlideEditorState extends State<SlideEditor> {
               padding: EdgeInsets.only(left: 30.0),
               child: Column(
                 children: <Widget>[
+                  Container(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(),
+                        ),
+                        Container(
+                          height: 40.0,
+                          child: MaterialButton(
+                            onPressed: () async {
+                              final result = await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Dialog(
+                                    child: AddContentTypeScreen(),
+                                  );
+                                },
+                              );
+                              if (result != null) {
+                                currentContentState.add(result);
+                                update();
+                              }
+                            },
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.add,
+                                  color: Colors.lightBlueAccent,
+                                ),
+                                Text('Add Content'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Row(
                     children: <Widget>[
                       Text('Advancement Count: '),

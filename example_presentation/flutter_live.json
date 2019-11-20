@@ -21,7 +21,323 @@
   },
   "slides": [
     {
-      "bg_color": "#FFFFFFff",
+      "bg_color": "#FFFFFFFF",
+      "content": []
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "Hey yo what's good flutter flies!?",
+      "content": [
+        {
+          "fill": "#FF0000FF",
+          "type": "rect",
+          "height": 840,
+          "width": 2000,
+          "x": 0,
+          "y": 0,
+          "animation": {
+            "scale_align": "topLeft",
+            "curve": "elasticOut",
+            "scale_start": 0.0,
+            "scale_end": 1.0,
+            "duration_in_milliseconds": 1250,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "top left rect",
+          "advancement_step": 0
+        },
+        {
+          "type": "label",
+          "text": "200m⁺",
+          "font_size": 100.0,
+          "align": "center",
+          "font_color": "#1B364Fff",
+          "line_height": 0.9,
+          "letter_spacing": -1.81,
+          "x": 135.0,
+          "y": 161.0,
+          "height": 106.0,
+          "width": 691.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "duration_in_milliseconds": 1250,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "200m label",
+          "advancement_step": 0
+        },
+        {
+          "type": "label",
+          "text": "users of Flutter apps",
+          "font_size": 54.0,
+          "align": "center",
+          "font_color": "#1B364Fff",
+          "line_height": 0.9,
+          "letter_spacing": -1,
+          "x": 234.0,
+          "y": 299.0,
+          "height": 81.0,
+          "width": 493.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "duration_in_milliseconds": 1250,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "200m subtitle",
+          "advancement_step": 0
+        },
+        {
+          "fill": "#13B9FDFF",
+          "type": "rect",
+          "height": 1040,
+          "width": 960,
+          "x": 960,
+          "y": 0,
+          "animation": {
+            "scale_align": "topRight",
+            "curve": "elasticOut",
+            "scale_start": 0.0,
+            "scale_end": 1.0,
+            "delay_in_milliseconds": 500,
+            "duration_in_milliseconds": 1250,
+            "offset_x": 0,
+            "offset_y": 0,
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "TR rect",
+          "advancement_step": 0
+        },
+        {
+          "type": "label",
+          "text": ">250,000",
+          "font_size": 100.0,
+          "align": "center",
+          "font_color": "#FFFFFFff",
+          "line_height": 0.9,
+          "letter_spacing": -1.81,
+          "x": 1095.0,
+          "y": 131.0,
+          "height": 106.0,
+          "width": 691.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "delay_in_milliseconds": 500,
+            "duration_in_milliseconds": 1250,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": null,
+          "advancement_step": 0,
+          "italic": false,
+          "strike_through": true
+        },
+        {
+          "type": "label",
+          "text": "Flutter developers \n since beta",
+          "font_size": 54.0,
+          "align": "center",
+          "text_align": "center",
+          "font_color": "#FFFFFFff",
+          "line_height": 0.9,
+          "letter_spacing": -1,
+          "x": 1095.0,
+          "y": 273.0,
+          "height": 137.0,
+          "width": 691.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "delay_in_milliseconds": 500,
+            "duration_in_milliseconds": 1250
+          }
+        },
+        {
+          "fill": "#0175C2ff",
+          "type": "rect",
+          "height": 540,
+          "width": 2060,
+          "x": 0,
+          "y": 540,
+          "animation": {
+            "scale_align": "bottomLeft",
+            "curve": "elasticOut",
+            "scale_start": 0.0,
+            "scale_end": 1.0,
+            "delay_in_milliseconds": 1000,
+            "duration_in_milliseconds": 1250,
+            "offset_x": 0,
+            "offset_y": 0,
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": null,
+          "advancement_step": 0
+        },
+        {
+          "type": "label",
+          "text": ">3,000",
+          "font_size": 100.0,
+          "align": "center",
+          "font_color": "#FFFFFFff",
+          "line_height": 0.9,
+          "letter_spacing": -1.81,
+          "x": 135.0,
+          "y": 664.0,
+          "height": 106.0,
+          "width": 691.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "delay_in_milliseconds": 1000,
+            "duration_in_milliseconds": 1250
+          }
+        },
+        {
+          "type": "label",
+          "text": "Flutter apps on\n the Play store",
+          "font_size": 54.0,
+          "align": "center",
+          "text_align": "center",
+          "font_color": "#FFFAFFFff",
+          "line_height": 0.9,
+          "letter_spacing": -1,
+          "x": 234.0,
+          "y": 806.0,
+          "height": 150.0,
+          "width": 493.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "delay_in_milliseconds": 1000,
+            "duration_in_milliseconds": 1250,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": null,
+          "advancement_step": 0,
+          "font_family": "",
+          "italic": false,
+          "strike_through": false
+        },
+        {
+          "fill": "#1B364Fff",
+          "type": "rect",
+          "height": 540,
+          "width": 960,
+          "x": 960,
+          "y": 540,
+          "animation": {
+            "scale_align": "bottomRight",
+            "curve": "elasticOut",
+            "scale_start": 0.0,
+            "scale_end": 1.0,
+            "duration_in_milliseconds": 1250,
+            "delay_in_milliseconds": 1500,
+            "offset_x": 0,
+            "offset_y": 0,
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "BR Rect",
+          "advancement_step": 0
+        },
+        {
+          "type": "label",
+          "text": "34th",
+          "font_size": 100.0,
+          "align": "center",
+          "font_color": "#FFFFFFff",
+          "line_height": 0.9,
+          "letter_spacing": -1.81,
+          "x": 1095.0,
+          "y": 666.0,
+          "height": 106.0,
+          "width": 691.0,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "delay_in_milliseconds": 1500,
+            "duration_in_milliseconds": 1250
+          }
+        },
+        {
+          "type": "label",
+          "text": "most popular software \n repo on GitHub",
+          "font_size": 54.0,
+          "align": "center",
+          "text_align": "center",
+          "font_color": "#FFFFFFff",
+          "line_height": 0.9,
+          "letter_spacing": -1,
+          "x": 1165.0,
+          "y": 808.0,
+          "height": 146.0,
+          "width": 550.0,
+          "delay_in_milliseconds": 1500,
+          "animation": {
+            "curve": "easeInOut",
+            "opacity_start": 0.0,
+            "delay_in_milliseconds": 1500,
+            "duration_in_milliseconds": 1250,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "github",
+          "advancement_step": 0,
+          "font_family": "",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "Hello DUDES AND DUDETTES",
       "content": [
         {
           "type": "main_title_slide",
@@ -50,7 +366,22 @@
             "ようこそ",
             "환영",
             "chào mừng"
-          ]
+          ],
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          }
         }
       ]
     },
@@ -70,83 +401,88 @@
           "y": 0.0,
           "height": 1080.0,
           "width": 1920.0,
-          "colors": ["0xFF1B364F", "0xFF0175C2", "0xFF13B9FD", "0xFFBFE6F3"],
+          "colors": [
+            "0xFF1B364F",
+            "0xFF0175C2",
+            "0xFF13B9FD",
+            "0xFFBFE6F3"
+          ],
           "photo_files": [
-            "images/team_portraits/flutter-team-04.webp",
-            "images/team_portraits/flutter-team-53.webp",
-            "images/team_portraits/flutter-team-45.webp",
-            "images/team_portraits/flutter-team-12.webp",
-            "images/team_portraits/flutter-team-69.webp",
-            "images/team_portraits/flutter-team-28.webp",
-            "images/team_portraits/flutter-team-08.webp",
-            "images/team_portraits/flutter-team-49.webp",
-            "images/team_portraits/flutter-team-65.webp",
-            "images/team_portraits/flutter-team-32.webp",
-            "images/team_portraits/flutter-team-24.webp",
-            "images/team_portraits/flutter-team-73.webp",
-            "images/team_portraits/flutter-team-72.webp",
-            "images/team_portraits/flutter-team-25.webp",
-            "images/team_portraits/flutter-team-33.webp",
-            "images/team_portraits/flutter-team-64.webp",
-            "images/team_portraits/flutter-team-48.webp",
-            "images/team_portraits/flutter-team-09.webp",
-            "images/team_portraits/flutter-team-29.webp",
-            "images/team_portraits/flutter-team-68.webp",
-            "images/team_portraits/flutter-team-13.webp",
-            "images/team_portraits/flutter-team-44.webp",
-            "images/team_portraits/flutter-team-52.webp",
-            "images/team_portraits/flutter-team-05.webp",
-            "images/team_portraits/flutter-team-59.webp",
+            "images/team_portraits/flutter-team-20.webp",
             "images/team_portraits/flutter-team-18.webp",
+            "images/team_portraits/flutter-team-38.webp",
+            "images/team_portraits/flutter-team-24.webp",
+            "images/team_portraits/flutter-team-21.webp",
+            "images/team_portraits/flutter-team-43.webp",
+            "images/team_portraits/flutter-team-68.webp",
             "images/team_portraits/flutter-team-63.webp",
+            "images/team_portraits/flutter-team-06.webp",
+            "images/team_portraits/flutter-team-25.webp",
+            "images/team_portraits/flutter-team-31.webp",
+            "images/team_portraits/flutter-team-01.webp",
+            "images/team_portraits/flutter-team-02.webp",
+            "images/team_portraits/flutter-team-05.webp",
+            "images/team_portraits/flutter-team-42.webp",
+            "images/team_portraits/flutter-team-40.webp",
+            "images/team_portraits/flutter-team-58.webp",
+            "images/team_portraits/flutter-team-26.webp",
+            "images/team_portraits/flutter-team-11.webp",
+            "images/team_portraits/flutter-team-55.webp",
+            "images/team_portraits/flutter-team-12.webp",
+            "images/team_portraits/flutter-team-04.webp",
+            "images/team_portraits/flutter-team-13.webp",
+            "images/team_portraits/flutter-team-53.webp",
+            "images/team_portraits/flutter-team-50.webp",
+            "images/team_portraits/flutter-team-09.webp",
+            "images/team_portraits/flutter-team-57.webp",
+            "images/team_portraits/flutter-team-30.webp",
+            "images/team_portraits/flutter-team-65.webp",
+            "images/team_portraits/flutter-team-03.webp",
+            "images/team_portraits/flutter-team-48.webp",
+            "images/team_portraits/flutter-team-75.webp",
+            "images/team_portraits/flutter-team-19.webp",
+            "images/team_portraits/flutter-team-39.webp",
+            "images/team_portraits/flutter-team-56.webp",
+            "images/team_portraits/flutter-team-36.webp",
+            "images/team_portraits/flutter-team-71.webp",
+            "images/team_portraits/flutter-team-16.webp",
+            "images/team_portraits/flutter-team-69.webp",
+            "images/team_portraits/flutter-team-46.webp",
+            "images/team_portraits/flutter-team-32.webp",
+            "images/team_portraits/flutter-team-41.webp",
+            "images/team_portraits/flutter-team-33.webp",
+            "images/team_portraits/flutter-team-72.webp",
+            "images/team_portraits/flutter-team-29.webp",
+            "images/team_portraits/flutter-team-23.webp",
+            "images/team_portraits/flutter-team-27.webp",
+            "images/team_portraits/flutter-team-61.webp",
+            "images/team_portraits/flutter-team-70.webp",
+            "images/team_portraits/flutter-team-64.webp",
+            "images/team_portraits/flutter-team-08.webp",
+            "images/team_portraits/flutter-team-15.webp",
+            "images/team_portraits/flutter-team-73.webp",
+            "images/team_portraits/flutter-team-52.webp",
+            "images/team_portraits/flutter-team-49.webp",
+            "images/team_portraits/flutter-team-45.webp",
+            "images/team_portraits/flutter-team-07.webp",
+            "images/team_portraits/flutter-team-44.webp",
+            "images/team_portraits/flutter-team-10.webp",
+            "images/team_portraits/flutter-team-60.webp",
+            "images/team_portraits/flutter-team-35.webp",
+            "images/team_portraits/flutter-team-59.webp",
             "images/team_portraits/flutter-team-34.webp",
             "images/team_portraits/flutter-team-22.webp",
-            "images/team_portraits/flutter-team-75.webp",
-            "images/team_portraits/flutter-team-02.webp",
-            "images/team_portraits/flutter-team-55.webp",
-            "images/team_portraits/flutter-team-43.webp",
-            "images/team_portraits/flutter-team-14.webp",
-            "images/team_portraits/flutter-team-38.webp",
-            "images/team_portraits/flutter-team-39.webp",
-            "images/team_portraits/flutter-team-15.webp",
-            "images/team_portraits/flutter-team-42.webp",
-            "images/team_portraits/flutter-team-54.webp",
-            "images/team_portraits/flutter-team-03.webp",
-            "images/team_portraits/flutter-team-74.webp",
-            "images/team_portraits/flutter-team-23.webp",
-            "images/team_portraits/flutter-team-35.webp",
-            "images/team_portraits/flutter-team-62.webp",
-            "images/team_portraits/flutter-team-19.webp",
-            "images/team_portraits/flutter-team-58.webp",
-            "images/team_portraits/flutter-team-20.webp",
-            "images/team_portraits/flutter-team-36.webp",
-            "images/team_portraits/flutter-team-61.webp",
-            "images/team_portraits/flutter-team-16.webp",
-            "images/team_portraits/flutter-team-41.webp",
-            "images/team_portraits/flutter-team-57.webp",
-            "images/team_portraits/flutter-team-01.webp",
-            "images/team_portraits/flutter-team-56.webp",
-            "images/team_portraits/flutter-team-40.webp",
-            "images/team_portraits/flutter-team-17.webp",
-            "images/team_portraits/flutter-team-60.webp",
-            "images/team_portraits/flutter-team-37.webp",
-            "images/team_portraits/flutter-team-21.webp",
-            "images/team_portraits/flutter-team-10.webp",
-            "images/team_portraits/flutter-team-47.webp",
             "images/team_portraits/flutter-team-51.webp",
-            "images/team_portraits/flutter-team-06.webp",
-            "images/team_portraits/flutter-team-71.webp",
-            "images/team_portraits/flutter-team-26.webp",
-            "images/team_portraits/flutter-team-30.webp",
-            "images/team_portraits/flutter-team-67.webp",
+            "images/team_portraits/flutter-team-74.webp",
             "images/team_portraits/flutter-team-66.webp",
-            "images/team_portraits/flutter-team-31.webp",
-            "images/team_portraits/flutter-team-27.webp",
-            "images/team_portraits/flutter-team-70.webp",
-            "images/team_portraits/flutter-team-07.webp",
-            "images/team_portraits/flutter-team-50.webp",
-            "images/team_portraits/flutter-team-46.webp",
-            "images/team_portraits/flutter-team-11.webp"
+            "images/team_portraits/flutter-team-37.webp",
+            "images/team_portraits/flutter-team-47.webp",
+            "images/team_portraits/flutter-team-28.webp",
+            "images/team_portraits/flutter-team-54.webp",
+            "images/team_portraits/flutter-team-17.webp",
+            "images/team_portraits/flutter-team-62.webp",
+            "images/team_portraits/flutter-team-14.webp",
+            "images/team_portraits/flutter-team-67.webp"
           ]
         }
       ]
@@ -554,230 +890,10 @@
       ]
     },
     {
-      "bg_color": "#FFFFFFff",
-      "content": [
-        {
-          "fill": "#BFE6F3ff",
-          "type": "rect",
-          "height": 540,
-          "width": 960,
-          "x": 0,
-          "y": 0,
-          "animation": {
-            "scale_align": "topLeft",
-            "curve": "elasticOut",
-            "scale_start": 0.0,
-            "scale_end": 1.0,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": "200m\u207A",
-          "font_size": 100.0,
-          "align": "center",
-          "font_color": "#1B364Fff",
-          "line_height": 0.9,
-          "letter_spacing": -1.81,
-          "x": 135.0,
-          "y": 161.0,
-          "height": 106.0,
-          "width": 691.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": "users of Flutter apps",
-          "font_size": 54.0,
-          "align": "center",
-          "font_color": "#1B364Fff",
-          "line_height": 0.9,
-          "letter_spacing": -1,
-          "x": 234.0,
-          "y": 299.0,
-          "height": 81.0,
-          "width": 493.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "fill": "#13B9FDff",
-          "type": "rect",
-          "height": 540,
-          "width": 960,
-          "x": 960,
-          "y": 0,
-          "animation": {
-            "scale_align": "topRight",
-            "curve": "elasticOut",
-            "scale_start": 0.0,
-            "scale_end": 1.0,
-            "delay_in_milliseconds": 500,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": ">250,000",
-          "font_size": 100.0,
-          "align": "center",
-          "font_color": "#FFFFFFff",
-          "line_height": 0.9,
-          "letter_spacing": -1.81,
-          "x": 1095.0,
-          "y": 131.0,
-          "height": 106.0,
-          "width": 691.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "delay_in_milliseconds": 500,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": "Flutter developers \n since beta",
-          "font_size": 54.0,
-          "align": "center",
-          "text_align": "center",
-          "font_color": "#FFFFFFff",
-          "line_height": 0.9,
-          "letter_spacing": -1,
-          "x": 1095.0,
-          "y": 273.0,
-          "height": 137.0,
-          "width": 691.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "delay_in_milliseconds": 500,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "fill": "#0175C2ff",
-          "type": "rect",
-          "height": 540,
-          "width": 960,
-          "x": 0,
-          "y": 540,
-          "animation": {
-            "scale_align": "bottomLeft",
-            "curve": "elasticOut",
-            "scale_start": 0.0,
-            "scale_end": 1.0,
-            "curve": "elasticOut",
-            "delay_in_milliseconds": 1000,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": ">3,000",
-          "font_size": 100.0,
-          "align": "center",
-          "font_color": "#FFFFFFff",
-          "line_height": 0.9,
-          "letter_spacing": -1.81,
-          "x": 135.0,
-          "y": 664.0,
-          "height": 106.0,
-          "width": 691.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "delay_in_milliseconds": 1000,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": "Flutter apps \n on the Play store",
-          "font_size": 54.0,
-          "align": "center",
-          "text_align": "center",
-          "font_color": "#FFFFFFff",
-          "line_height": 0.9,
-          "letter_spacing": -1,
-          "x": 234.0,
-          "y": 806.0,
-          "height": 150.0,
-          "width": 493.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "delay_in_milliseconds": 1000,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "fill": "#1B364Fff",
-          "type": "rect",
-          "height": 540,
-          "width": 960,
-          "x": 960,
-          "y": 540,
-          "animation": {
-            "scale_align": "bottomRight",
-            "curve": "elasticOut",
-            "scale_start": 0.0,
-            "scale_end": 1.0,
-            "duration_in_milliseconds": 1250,
-            "delay_in_milliseconds": 1500
-          }
-        },
-        {
-          "type": "label",
-          "text": "34th",
-          "font_size": 100.0,
-          "align": "center",
-          "font_color": "#FFFFFFff",
-          "line_height": 0.9,
-          "letter_spacing": -1.81,
-          "x": 1095.0,
-          "y": 666.0,
-          "height": 106.0,
-          "width": 691.0,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "delay_in_milliseconds": 1500,
-            "duration_in_milliseconds": 1250
-          }
-        },
-        {
-          "type": "label",
-          "text": "most popular software \n repo on GitHub",
-          "font_size": 54.0,
-          "align": "center",
-          "text_align": "center",
-          "font_color": "#FFFFFFff",
-          "line_height": 0.9,
-          "letter_spacing": -1,
-          "x": 1165.0,
-          "y": 808.0,
-          "height": 146.0,
-          "width": 550.0,
-          "delay_in_milliseconds": 1500,
-          "animation": {
-            "curve": "easeInOut",
-            "opacity_start": 0.0,
-            "delay_in_milliseconds": 1500,
-            "duration_in_milliseconds": 1250
-          }
-        }
-      ]
-    },
-    {
-      "bg_color": "#FFFFFFff",
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
       "content": [
         {
           "type": "image",
@@ -812,8 +928,16 @@
             "delay_in_milliseconds": 1000,
             "duration_in_milliseconds": 750,
             "offset_x": -299.0,
-            "offset_y": 0.0
-          }
+            "offset_y": 0.0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": null,
+          "advancement_step": 0
         },
         {
           "type": "label",
@@ -871,17 +995,20 @@
           "height": 1080.0,
           "width": 1920.0,
           "text": "Designed for\nBeautiful, Custom UI",
-          "align": "@replace/jumbo_slide_align",
-          "text_align": "@replace/jumbo_slide_text_align",
-          "font_size": "@replace/jumbo_slide_font_size",
-          "font_color": "@replace/jumbo_slide_font_color",
-          "line_height": "@replace/jumbo_slide_line_height",
-          "letter_spacing": "@replace/jumbo_slide_letter_spacing"
+          "align": "center",
+          "text_align": "center",
+          "font_size": 100.0,
+          "font_color": "0xFF1B364F",
+          "line_height": 0.9,
+          "letter_spacing": 1.44
         }
       ]
     },
     {
-      "bg_color": "#FFFFFFff",
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
       "content": [
         {
           "type": "rect",
@@ -902,7 +1029,24 @@
           "x": 376.0,
           "y": 454.0,
           "height": 186.0,
-          "width": 608.0
+          "width": 608.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "italic": false,
+          "strike_through": false
         },
         {
           "type": "image",
@@ -975,12 +1119,12 @@
           "height": 1080.0,
           "width": 1920.0,
           "text": "Designed for Good Design",
-          "align": "@replace/jumbo_slide_align",
-          "text_align": "@replace/jumbo_slide_text_align",
-          "font_size": "@replace/jumbo_slide_font_size",
-          "font_color": "@replace/jumbo_slide_font_color",
-          "line_height": "@replace/jumbo_slide_line_height",
-          "letter_spacing": "@replace/jumbo_slide_letter_spacing"
+          "align": "center",
+          "text_align": "center",
+          "font_size": 100.0,
+          "font_color": "0xFF1B364F",
+          "line_height": 0.9,
+          "letter_spacing": 1.44
         }
       ]
     },
@@ -1021,10 +1165,9 @@
       "content": [
         {
           "type": "image",
-          "fit": "contain",
+          "fit": "cover",
           "x": 0.0,
           "y": 0.0,
-          "fit": "cover",
           "height": 1080.0,
           "width": 1920.0,
           "evict": true,
@@ -1033,7 +1176,10 @@
       ]
     },
     {
-      "bg_color": "#FFFFFFff",
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
       "content": [
         {
           "type": "label",
@@ -1076,7 +1222,7 @@
         {
           "type": "image",
           "x": 934.0,
-          "y": 498.0,
+          "y": 470.0,
           "fit": "contain",
           "height": 97.0,
           "width": 97.0,
@@ -1084,9 +1230,18 @@
           "animation": {
             "curve": "elasticOut",
             "scale_start": 0.0,
-            "scale_end": 1.25,
-            "duration_in_milliseconds": 4000
-          }
+            "scale_end": 1.75,
+            "duration_in_milliseconds": 4000,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": null,
+          "advancement_step": 0
         }
       ]
     },
@@ -1182,12 +1337,12 @@
           "height": 1080.0,
           "width": 1920.0,
           "text": "Strike Through",
-          "align": "@replace/jumbo_slide_align",
-          "text_align": "@replace/jumbo_slide_text_align",
-          "font_size": "@replace/jumbo_slide_font_size",
-          "font_color": "@replace/jumbo_slide_font_color",
-          "line_height": "@replace/jumbo_slide_line_height",
-          "letter_spacing": "@replace/jumbo_slide_letter_spacing",
+          "align": "center",
+          "text_align": "center",
+          "font_size": 100.0,
+          "font_color": "0xFF1B364F",
+          "line_height": 0.9,
+          "letter_spacing": 1.44,
           "strike_through": true
         }
       ]
@@ -1331,6 +1486,7 @@
           "font_size": 60.0,
           "font_color": "#52575Bff",
           "line_height": 0.9,
+          "font_family": "roboto-mono",
           "letter_spacing": -0.06,
           "x": 1078.0,
           "y": 790.0,
@@ -1520,8 +1676,10 @@
       ]
     },
     {
-      "bg_color": "#FFFFFFFF",
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
       "animated_transition": true,
+      "notes": "",
       "content": [
         {
           "type": "image",
@@ -1536,8 +1694,16 @@
             "delay_in_milliseconds": 0,
             "duration_in_milliseconds": 40000,
             "scale_start": 1.0,
-            "scale_end": 0.82
-          }
+            "scale_end": 0.82,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "editor_title": "skyline image",
+          "advancement_step": 0
         }
       ]
     },
@@ -1684,36 +1850,10 @@
       ]
     },
     {
-      "bg_color": "#FFFFFFff",
-      "content": [
-        {
-          "type": "lottie_animation",
-          "fill": "0xFFFF0000",
-          "x": 710.0,
-          "y": 290.0,
-          "height": 500.0,
-          "width": 500.0,
-          "file": "lottie_animations/confetti.json"
-        },
-        {
-          "type": "label",
-          "x": 0.0,
-          "y": 0.0,
-          "height": 200.0,
-          "width": 1920.0,
-          "text": "Lottie Example",
-          "align": "@replace/jumbo_slide_align",
-          "text_align": "@replace/jumbo_slide_text_align",
-          "font_size": "@replace/jumbo_slide_font_size",
-          "font_color": "@replace/jumbo_slide_font_color",
-          "line_height": "@replace/jumbo_slide_line_height",
-          "letter_spacing": "@replace/jumbo_slide_letter_spacing"
-        }
-      ]
-    },
-    {
-      "bg_color": "#FFFFFFff",
+      "bg_color": "0XFFFFFFFF",
       "advancement_count": 4,
+      "animated_transition": true,
+      "notes": "",
       "content": [
         {
           "type": "label",
@@ -1723,9 +1863,9 @@
           "width": 1920.0,
           "text": "Advancement Examples",
           "align": "centerLeft",
-          "text_align": "@replace/jumbo_slide_text_align",
-          "font_size": "@replace/jumbo_slide_font_size",
-          "font_color": "@replace/jumbo_slide_font_color"
+          "text_align": "center",
+          "font_size": 100.0,
+          "font_color": "0xFF1B364F"
         },
         {
           "type": "label",

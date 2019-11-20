@@ -23,7 +23,8 @@ class _RectContentEditorState extends State<RectContentEditor>
   @override
   Widget build(BuildContext context) {
     widget.controller.listener = this;
-    fillController.text = widget.content['fill'].toString();
+    Map content = widget.content ?? {};
+    fillController.text = (content['fill'] ?? '0xFFFFFFFF').toString();
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +34,9 @@ class _RectContentEditorState extends State<RectContentEditor>
           child: TextField(
             controller: fillController,
             onSubmitted: (val) {
-              widget.onUpdated();
+              if (widget.onUpdated != null) {
+                widget.onUpdated();
+              }
             },
           ),
         ),

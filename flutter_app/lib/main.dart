@@ -5,6 +5,7 @@ import 'package:flutter_slides/slides/slide_presentation.dart';
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride, kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter_slides/workspace/add_content_type_screen.dart';
 import 'package:flutter_slides/workspace/load_presentation_screen.dart';
 
 import 'package:menubar/menubar.dart';
