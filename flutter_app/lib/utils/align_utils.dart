@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<String, Alignment> _alignMap = {
+Map<String, Alignment> alignMap = {
   'topLeft': Alignment.topLeft,
   'topCenter': Alignment.topCenter,
   'topRight': Alignment.topRight,
@@ -13,5 +13,5 @@ Map<String, Alignment> _alignMap = {
 };
 
 Alignment alignmentFromString(String string, {Alignment defaultAlignment}) {
-  return _alignMap[string ?? ''] ?? defaultAlignment ?? Alignment.center;
+  return alignMap[string ?? ''] ?? defaultAlignment ?? Alignment.center;
 }

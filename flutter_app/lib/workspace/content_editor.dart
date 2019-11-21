@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slides/models/slides.dart';
+import 'package:flutter_slides/utils/align_utils.dart';
+import 'package:flutter_slides/utils/curve_utils.dart';
 import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
 import 'package:flutter_slides/workspace/content_value_editors/image_content_editor.dart';
 import 'package:flutter_slides/workspace/content_value_editors/label_content_editor.dart';
 import 'package:flutter_slides/workspace/content_value_editors/two_dimensions_content_editor.dart';
+import 'package:flutter_slides/workspace/select_curve_screen.dart';
+import 'package:flutter_slides/workspace/select_fixed_values_screen.dart';
 
 import 'content_value_editors/rect_content_editor.dart';
 
@@ -259,11 +263,28 @@ class _ContentEditorState extends State<ContentEditor> {
                           children: <Widget>[
                             Text('Curve: '),
                             Expanded(
-                              child: TextField(
-                                controller: aniCurveController,
-                                onSubmitted: (val) {
-                                  update();
-                                },
+                              child: Material(
+                                type: MaterialType.transparency,
+                                child: InkWell(
+                                  child: Text(aniCurveController.text),
+                                  onTap: () async {
+                                    final result = await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          child: SelectFixedValuesScreen(
+                                            data: curveMap,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                    if (result != null) {
+                                      aniCurveController.value =
+                                          TextEditingValue(text: result);
+                                      update();
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                           ],
@@ -338,11 +359,28 @@ class _ContentEditorState extends State<ContentEditor> {
                           children: <Widget>[
                             Text('Scale Align: '),
                             Expanded(
-                              child: TextField(
-                                controller: aniScaleAlignController,
-                                onSubmitted: (val) {
-                                  update();
-                                },
+                              child: Material(
+                                type: MaterialType.transparency,
+                                child: InkWell(
+                                  child: Text(aniScaleAlignController.text),
+                                  onTap: () async {
+                                    final result = await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Dialog(
+                                          child: SelectFixedValuesScreen(
+                                            data: alignMap,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                    if (result != null) {
+                                      aniScaleAlignController.value =
+                                          TextEditingValue(text: result);
+                                      update();
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                           ],

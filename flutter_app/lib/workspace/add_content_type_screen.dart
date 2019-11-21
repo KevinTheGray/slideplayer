@@ -47,8 +47,11 @@ class _AddContentTypeScreenState extends State<AddContentTypeScreen> {
                   Navigator.of(context).pop(Map<String, dynamic>.from({
                     "type": "label",
                     "text": "Label Content",
-                    "font_size": 64.0,
+                    "font_size": 120.0,
                     "font_color": "#0175C2ff",
+                    "line_height": 1.0,
+                    "letter_spacing": 1.0,
+                    "text_align": "center",
                   })
                     ..addAll(positioning));
                 },
