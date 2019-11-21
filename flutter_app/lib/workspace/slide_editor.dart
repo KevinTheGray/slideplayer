@@ -3,11 +3,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_slides/models/slide.dart';
+import 'package:flutter_slides/utils/color_utils.dart';
 import 'package:flutter_slides/workspace/add_content_type_screen.dart';
 import 'package:flutter_slides/workspace/content_editor.dart';
+import 'package:flutter_slides/workspace/select_color_screen.dart';
+import 'package:flutter_slides/workspace/select_fixed_values_screen.dart';
 
 extension ColorDude on Color {
   toHexString() => '0x${value.toRadixString(16).padLeft(8, '0')}'.toUpperCase();
+  toPrettyHexString() =>
+      '#${value.toRadixString(16).padLeft(8, '0')}'.toUpperCase();
 }
 
 class SlideEditor extends StatefulWidget {
@@ -62,6 +67,34 @@ class _SlideEditorState extends State<SlideEditor> {
                           onSubmitted: (val) {
                             update();
                           },
+                        ),
+                      ),
+                      Material(
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          onTap: () async {
+                            final result = await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return Dialog(
+                                  child: SelectColorScreen(),
+                                );
+                              },
+                            );
+                            if (result != null) {
+                              bgColorController.value =
+                                  TextEditingValue(text: result);
+                              update();
+                            }
+                          },
+                          child: Container(
+                            width: 48.0,
+                            height: 48.0,
+                            child: Icon(
+                              Icons.palette,
+                              color: colorFromString(bgColorController.text),
+                            ),
+                          ),
                         ),
                       ),
                     ],

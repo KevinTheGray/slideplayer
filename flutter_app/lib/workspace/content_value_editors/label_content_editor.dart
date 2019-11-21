@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slides/utils/align_utils.dart';
+import 'package:flutter_slides/utils/color_utils.dart';
 import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
+import 'package:flutter_slides/workspace/select_color_screen.dart';
+import 'package:flutter_slides/workspace/select_fixed_values_screen.dart';
 
 class LabelContentEditor extends StatefulWidget {
   final Map content;
@@ -75,9 +79,37 @@ class _LabelContentEditorState extends State<LabelContentEditor>
             Expanded(
               child: TextField(
                 controller: fontColorController,
-                onSubmitted: (value) {
+                onSubmitted: (val) {
                   widget.onUpdated();
                 },
+              ),
+            ),
+            Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () async {
+                  final result = await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        child: SelectColorScreen(),
+                      );
+                    },
+                  );
+                  if (result != null) {
+                    fontColorController.value =
+                        TextEditingValue(text: result);
+                    widget.onUpdated();
+                  }
+                },
+                child: Container(
+                  width: 48.0,
+                  height: 48.0,
+                  child: Icon(
+                    Icons.palette,
+                    color: colorFromString(fontColorController.text),
+                  ),
+                ),
               ),
             ),
           ],
@@ -88,45 +120,6 @@ class _LabelContentEditorState extends State<LabelContentEditor>
             Expanded(
               child: TextField(
                 controller: fontSizeController,
-                onSubmitted: (value) {
-                  widget.onUpdated();
-                },
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text('Text Align: '),
-            Expanded(
-              child: TextField(
-                controller: textAlignController,
-                onSubmitted: (value) {
-                  widget.onUpdated();
-                },
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text('Align: '),
-            Expanded(
-              child: TextField(
-                controller: alignController,
-                onSubmitted: (value) {
-                  widget.onUpdated();
-                },
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text('Font Family: '),
-            Expanded(
-              child: TextField(
-                controller: fontFamilyController,
                 onSubmitted: (value) {
                   widget.onUpdated();
                 },
@@ -156,6 +149,102 @@ class _LabelContentEditorState extends State<LabelContentEditor>
                 onSubmitted: (value) {
                   widget.onUpdated();
                 },
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Text('Text Align: '),
+            Expanded(
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  child: Text(textAlignController.text),
+                  onTap: () async {
+                    final result = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          child: SelectFixedValuesScreen(
+                            data: {
+                              'start': null,
+                              'center': null,
+                              'end': null,
+                            },
+                          ),
+                        );
+                      },
+                    );
+                    if (result != null) {
+                      textAlignController.value =
+                          TextEditingValue(text: result);
+                      widget.onUpdated();
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Text('Align: '),
+            Expanded(
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  child: Text(alignController.text),
+                  onTap: () async {
+                    final result = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          child: SelectFixedValuesScreen(
+                            data: alignMap,
+                          ),
+                        );
+                      },
+                    );
+                    if (result != null) {
+                      alignController.value = TextEditingValue(text: result);
+                      widget.onUpdated();
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Text('Font Family: '),
+            Expanded(
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  child: Text(fontFamilyController.text),
+                  onTap: () async {
+                    final result = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          child: SelectFixedValuesScreen(
+                            data: {
+                              'GoogleSans': null,
+                              'RobotoMono': null,
+                            },
+                          ),
+                        );
+                      },
+                    );
+                    if (result != null) {
+                      fontFamilyController.value =
+                          TextEditingValue(text: result);
+                      widget.onUpdated();
+                    }
+                  },
+                ),
               ),
             ),
           ],

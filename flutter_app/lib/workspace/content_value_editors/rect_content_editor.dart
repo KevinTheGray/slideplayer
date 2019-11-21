@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slides/utils/color_utils.dart';
 import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
+import 'package:flutter_slides/workspace/select_color_screen.dart';
 
 class RectContentEditor extends StatefulWidget {
   final Map content;
@@ -26,18 +28,42 @@ class _RectContentEditorState extends State<RectContentEditor>
     Map content = widget.content ?? {};
     fillController.text = (content['fill'] ?? '0xFFFFFFFF').toString();
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Text('Fill:'),
+        Text('Fill: '),
         Expanded(
           child: TextField(
             controller: fillController,
             onSubmitted: (val) {
-              if (widget.onUpdated != null) {
+              widget.onUpdated();
+            },
+          ),
+        ),
+        Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: () async {
+              final result = await showDialog(
+                context: context,
+                builder: (context) {
+                  return Dialog(
+                    child: SelectColorScreen(),
+                  );
+                },
+              );
+              if (result != null) {
+                fillController.value =
+                    TextEditingValue(text: result);
                 widget.onUpdated();
               }
             },
+            child: Container(
+              width: 48.0,
+              height: 48.0,
+              child: Icon(
+                Icons.palette,
+                color: colorFromString(fillController.text),
+              ),
+            ),
           ),
         ),
       ],
