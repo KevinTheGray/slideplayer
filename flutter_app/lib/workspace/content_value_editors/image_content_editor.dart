@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slides/models/slides.dart';
+import 'package:flutter_slides/utils/image_utils.dart';
 import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
+import 'package:flutter_slides/workspace/select_fixed_values_screen.dart';
+import 'package:file_chooser/file_chooser.dart' as file_chooser;
 
 class ImageContentEditor extends StatefulWidget {
   final Map content;
@@ -38,24 +44,68 @@ class _ImageContentEditorState extends State<ImageContentEditor>
           children: <Widget>[
             Text('File: '),
             Expanded(
-              child: TextField(
-                controller: fileController,
-                onSubmitted: (value) {
-                  widget.onUpdated();
+              child: Text(fileController.text),
+            ),
+            Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () async {
+                  final String externalFilesRoot =
+                      loadedSlides.presentationMetadata.externalFilesRoot;
+                  file_chooser.showOpenPanel((result, files) {
+                    if (files?.isNotEmpty ?? false) {
+                      String filePath = files.first;
+                      if (filePath.startsWith(externalFilesRoot)) {
+                        final newPath = filePath.split(externalFilesRoot)[1];
+                        fileController.value = TextEditingValue(text: newPath);
+                        assetController.value = TextEditingValue(text: '');
+                        widget.onUpdated();
+                      }
+                    }
+                  }, initialDirectory: externalFilesRoot);
                 },
+                child: Container(
+                  width: 48.0,
+                  height: 48.0,
+                  child: Icon(
+                    Icons.attachment,
+                  ),
+                ),
               ),
             ),
           ],
         ),
         Row(
           children: <Widget>[
-            Text('Asset: '),
+            Text('Bundled Asset: '),
             Expanded(
-              child: TextField(
-                controller: assetController,
-                onSubmitted: (value) {
-                  widget.onUpdated();
+              child: Text(assetController.text),
+            ),
+            Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () async {
+                  String assetsRootPath = Directory.current.path + '/assets';
+                  file_chooser.showOpenPanel((result, files) {
+                    if (files?.isNotEmpty ?? false) {
+                      String filePath = files.first;
+                      if (filePath.startsWith(assetsRootPath)) {
+                        final newPath = filePath.split(assetsRootPath)[1];
+                        fileController.value = TextEditingValue(text: '');
+                        assetController.value =
+                            TextEditingValue(text: 'assets' + newPath);
+                        widget.onUpdated();
+                      }
+                    }
+                  }, initialDirectory: assetsRootPath);
                 },
+                child: Container(
+                  width: 48.0,
+                  height: 48.0,
+                  child: Icon(
+                    Icons.attachment,
+                  ),
+                ),
               ),
             ),
           ],
@@ -64,11 +114,27 @@ class _ImageContentEditorState extends State<ImageContentEditor>
           children: <Widget>[
             Text('Fit: '),
             Expanded(
-              child: TextField(
-                controller: fitController,
-                onSubmitted: (value) {
-                  widget.onUpdated();
-                },
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  child: Text(fitController.text),
+                  onTap: () async {
+                    final result = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          child: SelectFixedValuesScreen(
+                            data: boxFitMap,
+                          ),
+                        );
+                      },
+                    );
+                    if (result != null) {
+                      fitController.value = TextEditingValue(text: result);
+                      widget.onUpdated();
+                    }
+                  },
+                ),
               ),
             ),
           ],
@@ -92,10 +158,8 @@ class _ImageContentEditorState extends State<ImageContentEditor>
   @override
   Map getContentValues() {
     return {
-      'file':
-          fileController.text.length > 0 ? fileController.text : null,
-      'asset':
-          assetController.text.length > 0 ? assetController.text : null,
+      'file': fileController.text.length > 0 ? fileController.text : null,
+      'asset': assetController.text.length > 0 ? assetController.text : null,
       'fit': fitController.text,
       'evict': evict,
     };

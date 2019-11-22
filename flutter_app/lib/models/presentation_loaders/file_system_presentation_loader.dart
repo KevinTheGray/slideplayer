@@ -48,7 +48,8 @@ class FileSystemPresentationLoader extends PresentationLoader {
 
   void _loadData() async {
     _presentationJSONString = await File(filePath).readAsString();
-    updateWindowName(basename(filePath));
+    updateWindowName(
+        '${basename(filePath)} - ${File(filePath).lastModifiedSync()}');
     notifyListeners();
   }
 

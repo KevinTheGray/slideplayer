@@ -19,13 +19,7 @@ class ImageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (assetPath != null) {
-      if (evict) {
-        Image.asset(assetPath).image.evict();
-      }
-      final Image image = Image.asset(assetPath, fit: fit);
-      return image;
-    } else {
+    if (filePath != null) {
       final root = loadedSlides.presentationMetadata.externalFilesRoot;
       if (evict) {
         FileImage(File('$root/$filePath')).evict();
@@ -34,6 +28,12 @@ class ImageContent extends StatelessWidget {
         File('$root/$filePath'),
         fit: fit,
       );
+      return image;
+    } else {
+      if (evict) {
+        Image.asset(assetPath).image.evict();
+      }
+      final Image image = Image.asset(assetPath, fit: fit);
       return image;
     }
   }

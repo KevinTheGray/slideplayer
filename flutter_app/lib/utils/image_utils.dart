@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-Map<String, BoxFit> _boxFitMap = {
+Map<String, BoxFit> boxFitMap = {
   'cover': BoxFit.cover,
   'contain': BoxFit.contain,
 };
 
 BoxFit boxFitFromString(String string) {
-  return _boxFitMap[string ?? ''] ?? BoxFit.contain;
+  return boxFitMap[string ?? ''] ?? BoxFit.contain;
 }

@@ -218,7 +218,7 @@ class _SlidePresentationState extends State<SlidePresentation>
     if (model.slides.length == 0) {
       return Material(
         type: MaterialType.transparency,
-        child: Text('Add a Slide'),
+        child: Text('Add a Slide with CMD+A'),
       );
     }
     return SlidePage(
@@ -238,6 +238,9 @@ class _SlidePresentationState extends State<SlidePresentation>
           backgroundColor: model.presentationMetadata.slidesListBGColor,
           body: Builder(
             builder: (context) {
+              if (model.slides.length == 0) {
+                return Container();
+              }
               final currSlide = model.slides[_currentSlideIndex];
               return ListView(
                 children: <Widget>[
