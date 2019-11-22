@@ -68,6 +68,12 @@ class _SlidePresentationState extends State<SlidePresentation>
           },
         ),
         MenuItem(
+          label: 'Save As',
+          onClicked: () {
+            saveCurrentAs();
+          },
+        ),
+        MenuItem(
           label: 'Show Notes',
           onClicked: () {
             showNoteWindow();
@@ -417,6 +423,7 @@ class _SlidePresentationState extends State<SlidePresentation>
         final RawKeyEventDataMacOs data = event.data;
         if (event.isMetaPressed) {}
         keyCode = data.keyCode;
+//        print(keyCode);
         if (keyCode == 33) {
           if (_slideListController?.status == AnimationStatus.forward ||
               _slideListController?.status == AnimationStatus.completed) {
@@ -439,8 +446,10 @@ class _SlidePresentationState extends State<SlidePresentation>
         } else if (keyCode == 124) {
           _advancePresentation(model);
         } else if (keyCode == 51) {
-          model.removeSlide(_currentSlideIndex);
-          _currentSlideIndex = _currentSlideIndex - 1;
+          if (event.isMetaPressed) {
+            model.removeSlide(_currentSlideIndex);
+            _currentSlideIndex = _currentSlideIndex - 1;
+          }
         } else if (keyCode == 6) {
           if (event.isMetaPressed) {
             if (event.isShiftPressed) {
@@ -450,15 +459,24 @@ class _SlidePresentationState extends State<SlidePresentation>
             }
           }
         } else if (keyCode == 0) {
-          if (model.slides.length == 0) {
-            _currentSlideIndex = 0;
-          } else {
-            _currentSlideIndex = _currentSlideIndex + 1;
+          if (event.isMetaPressed) {
+            if (event.isShiftPressed) {
+            } else {
+              if (model.slides.length == 0) {
+                _currentSlideIndex = 0;
+              } else {
+                _currentSlideIndex = _currentSlideIndex + 1;
+              }
+              model.addSlide(
+                {"bg_color": "#FFFFFFFF", "content": []},
+                index: _currentSlideIndex,
+              );
+            }
           }
-          model.addSlide(
-            {"bg_color": "#FFFFFFFF", "content": []},
-            index: _currentSlideIndex,
-          );
+        } else if (keyCode == 1) {
+          if (event.isMetaPressed) {
+            model.saveCurrent();
+          }
         }
         break;
       default:

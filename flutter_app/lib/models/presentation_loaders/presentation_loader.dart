@@ -9,4 +9,5 @@ abstract class PresentationLoader extends ChangeNotifier {
   void load();
   void save(Map presentation);
   void dispose();
+  void saveAs(Map presentation);
 }

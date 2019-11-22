@@ -26,7 +26,7 @@ class MainFlutterWindow: NSWindow {
     self.setFrame(windowFrame, display: true)
 
     RegisterGeneratedPlugins(registry: flutterViewController)
-    FLTFirebaseDatabasePlugin.register(with: flutterViewController.registrar(forPlugin: "FirebaseDatabasePlugin"))
+//    FLTFirebaseDatabasePlugin.register(with: flutterViewController.registrar(forPlugin: "FirebaseDatabasePlugin"))
     NotesUpdaterPlugin.register(with: flutterViewController.registrar(forPlugin: "NotesUpdaterPlugin"))
     super.awakeFromNib()
   }

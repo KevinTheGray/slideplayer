@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter_slides/models/presentation_loaders/file_system_presentation_loader.dart';
-import 'package:flutter_slides/models/presentation_loaders/firebase_database_presentation_loader.dart';
 import 'package:flutter_slides/models/presentation_loaders/presentation_loader.dart';
 import 'package:flutter_slides/models/slide.dart';
 import 'package:flutter_slides/models/slide_factors.dart';
@@ -28,9 +27,10 @@ void loadRecentlyOpenedSlideData() {
       }
       if (type == FileSystemPresentationLoader(null).typeID) {
         loadPresentation(FileSystemPresentationLoader(presentationID));
-      } else if (type == FirebaseDatabasePresentationLoader(null).typeID) {
-        loadPresentation(FirebaseDatabasePresentationLoader(presentationID));
       }
+//      else if (type == FirebaseDatabasePresentationLoader(null).typeID) {
+//        loadPresentation(FirebaseDatabasePresentationLoader(presentationID));
+//      }
     },
   );
 }
@@ -41,6 +41,10 @@ void loadPresentation(PresentationLoader presentationLoader) {
 
 void saveCurrent() {
   loadedSlides.saveCurrent();
+}
+
+void saveCurrentAs() {
+  loadedSlides.saveCurrentAs();
 }
 
 class DebugOptions {
@@ -223,6 +227,10 @@ class FlutterSlidesModel extends Model {
 
   void saveCurrent() {
     _presentationLoader.save(_currentSlides);
+  }
+
+  void saveCurrentAs() {
+    _presentationLoader.saveAs(_currentSlides);
   }
 
   void undo() {
