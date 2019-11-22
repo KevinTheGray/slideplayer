@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slides/workspace/content_value_editors/content_value_editor_controller.dart';
+import 'package:file_chooser/file_chooser.dart' as file_chooser;
 
 class TwoDimensionsContentEditor extends StatefulWidget {
   final Map content;
@@ -30,13 +33,34 @@ class _TwoDimensionsContentEditorState extends State<TwoDimensionsContentEditor>
       children: <Widget>[
         Row(
           children: <Widget>[
-            Text('Asset:'),
+            Text('Bundled Asset: '),
             Expanded(
-              child: TextField(
-                controller: assetController,
-                onSubmitted: (val) {
-                  widget.onUpdated();
+              child: Text(assetController.text),
+            ),
+            Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () async {
+                  String assetsRootPath = Directory.current.path + '/assets';
+                  file_chooser.showOpenPanel((result, files) {
+                    if (files?.isNotEmpty ?? false) {
+                      String filePath = files.first;
+                      if (filePath.startsWith(assetsRootPath)) {
+                        final newPath = filePath.split(assetsRootPath)[1];
+                        assetController.value =
+                            TextEditingValue(text: 'assets' + newPath);
+                        widget.onUpdated();
+                      }
+                    }
+                  }, initialDirectory: assetsRootPath);
                 },
+                child: Container(
+                  width: 48.0,
+                  height: 48.0,
+                  child: Icon(
+                    Icons.attachment,
+                  ),
+                ),
               ),
             ),
           ],
