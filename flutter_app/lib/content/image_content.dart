@@ -24,7 +24,6 @@ class ImageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(tint);
     Image image;
     if (filePath != null) {
       final root = loadedSlides.presentationMetadata.externalFilesRoot;

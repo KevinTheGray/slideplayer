@@ -519,15 +519,19 @@ class _SlidePresentationState extends State<SlidePresentation>
         if (content['type'] == 'image') {
           if (content['evict'] ?? false) continue;
           ImageProvider provider;
-          if (content.containsKey('asset')) {
-            provider = Image.asset(content['asset']).image;
+          try {
+            if (content['asset'] != null) {
+              provider = Image.asset(content['asset']).image;
+            }
+            if (content['file'] != null) {
+              final root = model.presentationMetadata.externalFilesRoot;
+              provider = FileImage(File('$root/${content['file']}'));
+            }
+            final config = createLocalImageConfiguration(context);
+            provider?.resolve(config);
+          } catch (e) {
+            print('error preacaching image');
           }
-          if (content.containsKey('file')) {
-            final root = model.presentationMetadata.externalFilesRoot;
-            provider = FileImage(File('$root/${content['file']}'));
-          }
-          final config = createLocalImageConfiguration(context);
-          provider?.resolve(config);
         }
       }
     }
