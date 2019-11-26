@@ -24,7 +24,7 @@
       "bg_color": "0XFF041E3C",
       "advancement_count": 0,
       "animated_transition": false,
-      "notes": "",
+      "notes": "So thank you Matias! It’s great to be here for Flutter Interact this year. Our goal this year is to highlight the creative expressivity of Flutter as a platform for interactive content. We want to give you a sense of the range of its capabilities as a tool for designers, developers, creative coders -- whatever you call yourself, if you care about building beautiful native experiences for any device that displays pixels, we want Flutter to be a canvas for you.",
       "content": [
         {
           "type": "label",
@@ -36,8 +36,8 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
-          "y": 0.0,
+          "x": 100.0,
+          "y": 200.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
@@ -96,7 +96,10 @@
       ]
     },
     {
-      "bg_color": "#FFFFFFFF",
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
       "content": [
         {
           "type": "supported_platforms",
@@ -119,6 +122,7 @@
           "viewport_fraction": 0.333,
           "title_top_padding": 40.0,
           "title_font_color": "0xFF52575B",
+          "notes": "",
           "cell_data": [
             {
               "title": "Nest Hub Max",
@@ -180,7 +184,22 @@
               "title": "GE Oven",
               "filepath": "images/pillars_screen/flutter_pillars_logo.webp"
             }
-          ]
+          ],
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          }
         }
       ]
     },
@@ -201,7 +220,7 @@
           "width": 1920.0,
           "height": 1080.0,
           "x": 0.0,
-          "y": 0.0,
+          "y": 200.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
@@ -233,7 +252,7 @@
           "width": 1920.0,
           "height": 1080.0,
           "x": 0.0,
-          "y": 0.0,
+          "y": 200.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
@@ -272,7 +291,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -297,7 +316,10 @@
       ]
     },
     {
+      "bg_color": "0XFFFFFFFF",
       "advancement_count": 5,
+      "animated_transition": false,
+      "notes": "",
       "content": [
         {
           "type": "flutter_pillars",
@@ -607,11 +629,66 @@
               "width": 1125.0,
               "height": 640.0
             }
+          },
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
           }
         }
       ]
     },
     {
+      "bg_color": "0XFF000000",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "[Momentum slides]",
+          "font_size": 120.0,
+          "font_color": "0XFFFFFFFF",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "center",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 0.0,
+          "y": 0.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "center",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
       "bg_color": "0XFFFFFFFF",
       "advancement_count": 0,
       "animated_transition": false,
@@ -619,7 +696,7 @@
       "content": [
         {
           "type": "label",
-          "text": "Momentum #1\nOctoverse\n(this and the following two slides may be rolled into one.)",
+          "text": "> 1 million Flutter users since 1.0",
           "font_size": 120.0,
           "font_color": "0XFF000000",
           "line_height": 1.0,
@@ -658,36 +735,31 @@
       "notes": "",
       "content": [
         {
-          "type": "label",
-          "text": "Momentum #2\nGitter",
-          "font_size": 120.0,
-          "font_color": "0XFF000000",
-          "line_height": 1.0,
-          "letter_spacing": 1.0,
-          "text_align": "center",
+          "type": "image",
+          "fit": "contain",
+          "asset": null,
           "width": 1920.0,
-          "height": 1080.0,
+          "height": 880.0,
           "x": 0.0,
-          "y": 0.0,
+          "y": 100.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
-            "curve": "",
-            "duration_in_milliseconds": 0,
+            "curve": "ease",
+            "duration_in_milliseconds": 1000,
             "delay_in_milliseconds": 0,
             "offset_x": 0,
             "offset_y": 0,
             "scale_start": 1.0,
             "scale_end": 1.0,
             "scale_align": "center",
-            "opacity_start": 1.0,
+            "opacity_start": 0.0,
             "opacity_end": 1.0,
             "rotation": 0.0
           },
-          "font_family": "",
-          "align": "center",
-          "italic": false,
-          "strike_through": false
+          "file": "/images/flutter_interact/momentum-github.png",
+          "tint": null,
+          "evict": false
         }
       ]
     },
@@ -698,13 +770,9 @@
       "notes": "",
       "content": [
         {
-          "type": "label",
-          "text": "Momentum #3\nPress",
-          "font_size": 120.0,
-          "font_color": "0XFF000000",
-          "line_height": 1.0,
-          "letter_spacing": 1.0,
-          "text_align": "center",
+          "type": "image",
+          "fit": "contain",
+          "asset": null,
           "width": 1920.0,
           "height": 1080.0,
           "x": 0.0,
@@ -724,10 +792,44 @@
             "opacity_end": 1.0,
             "rotation": 0.0
           },
-          "font_family": "",
-          "align": "center",
-          "italic": false,
-          "strike_through": false
+          "file": "/images/flutter_interact/momentum-octoverse.png",
+          "tint": null,
+          "evict": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "image",
+          "fit": "contain",
+          "asset": null,
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 0.0,
+          "y": 0.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "file": "/images/flutter_interact/momentum-dart-soars.png",
+          "tint": null,
+          "evict": false
         }
       ]
     },
@@ -844,6 +946,46 @@
           },
           "font_family": "",
           "align": "topLeft",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFF000000",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "ACT ONE: Flutter as a UI platform for ambient computing [35m]",
+          "font_size": 80.0,
+          "font_color": "0XFFFFFFFF",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": -100.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "GoogleSans",
+          "align": "bottomLeft",
           "italic": false,
           "strike_through": false
         }
@@ -1069,20 +1211,12 @@
           "file": "/images/misc/FL18_Slide_17B_v01.gif",
           "tint": null,
           "evict": true
-        }
-      ]
-    },
-    {
-      "bg_color": "0XFF041E3C",
-      "advancement_count": 0,
-      "animated_transition": false,
-      "notes": "",
-      "content": [
+        },
         {
           "type": "label",
-          "text": "[Feature slide]",
-          "font_size": 120.0,
-          "font_color": "0XFFFFFFFF",
+          "text": "Need updated asset",
+          "font_size": 80,
+          "font_color": "0XFFFF8383",
           "line_height": 1.0,
           "letter_spacing": 1.0,
           "text_align": "center",
@@ -1106,7 +1240,7 @@
             "rotation": 0.0
           },
           "font_family": "",
-          "align": "centerLeft",
+          "align": "bottomCenter",
           "italic": false,
           "strike_through": false
         }
@@ -1120,7 +1254,7 @@
       "content": [
         {
           "type": "label",
-          "text": "demo\n\nRoberto Scaramuzzi\nStadia",
+          "text": "Flutter 1.12",
           "font_size": 120.0,
           "font_color": "0XFF000000",
           "line_height": 1.0,
@@ -1128,8 +1262,8 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
-          "y": 0.0,
+          "x": 100.0,
+          "y": 100.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
@@ -1146,7 +1280,111 @@
             "rotation": 0.0
           },
           "font_family": "",
-          "align": "centerLeft",
+          "align": "topLeft",
+          "italic": false,
+          "strike_through": false
+        },
+        {
+          "type": "label",
+          "text": "Add to App improvements\nSomething about plug-ins\nAndroidX default\nMaterial updates\nCupertine updates\nFFI support\nExtension Methods",
+          "font_size": 60,
+          "font_color": "0XFF000000",
+          "line_height": 1.5,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": 300.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "topLeft",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "Roberto Scaramuzzi\nStadia",
+          "font_size": 90.0,
+          "font_color": "0XFF000000",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": 600.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "topLeft",
+          "italic": false,
+          "strike_through": false
+        },
+        {
+          "type": "label",
+          "text": "demo",
+          "font_size": 120.0,
+          "font_color": "0XFF000000",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": 200.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "topLeft",
           "italic": false,
           "strike_through": false
         }
@@ -1168,7 +1406,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1364,6 +1602,38 @@
           "file": "/images/flutter_interact/flutter_on_the_web_blank.png",
           "tint": null,
           "evict": false
+        },
+        {
+          "type": "label",
+          "text": "Single code base\nPage routing\nNative text editing\nMobile accessibility\nPlug-in support\nDebugger integration\nCompile to optimized JS",
+          "font_size": 60,
+          "font_color": "0XFF000000",
+          "line_height": 1.5,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": 300.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "topLeft",
+          "italic": false,
+          "strike_through": false
         }
       ]
     },
@@ -1418,7 +1688,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1458,7 +1728,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1479,41 +1749,6 @@
           "align": "centerLeft",
           "italic": false,
           "strike_through": false
-        }
-      ]
-    },
-    {
-      "bg_color": "0XFFFFFFFF",
-      "advancement_count": 0,
-      "animated_transition": false,
-      "notes": "",
-      "content": [
-        {
-          "type": "image",
-          "fit": "contain",
-          "asset": null,
-          "width": 1920.0,
-          "height": 1080.0,
-          "x": 0.0,
-          "y": 0.0,
-          "editor_title": null,
-          "advancement_step": 0,
-          "animation": {
-            "curve": "",
-            "duration_in_milliseconds": 0,
-            "delay_in_milliseconds": 0,
-            "offset_x": 0,
-            "offset_y": 0,
-            "scale_start": 1.0,
-            "scale_end": 1.0,
-            "scale_align": "center",
-            "opacity_start": 1.0,
-            "opacity_end": 1.0,
-            "rotation": 0.0
-          },
-          "file": "/images/flutter_interact/dart_2019_highlights.png",
-          "tint": null,
-          "evict": false
         }
       ]
     },
@@ -1581,6 +1816,156 @@
             "opacity_end": 1.0,
             "rotation": 0.0
           },
+          "file": "/images/flutter_interact/dart_2019_highlights.png",
+          "tint": null,
+          "evict": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "demo\n\nChris Sells\n@csells\n\nZoey Fan\n@zoeyfan",
+          "font_size": 100,
+          "font_color": "0XFF000000",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": 200.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "topLeft",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFF000000",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "ACT TWO: Flutter as a canvas for creative expression [28m]",
+          "font_size": 80,
+          "font_color": "0XFFFFFFFF",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "start",
+          "width": 1720.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": -100.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "bottomLeft",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "image",
+          "fit": "contain",
+          "asset": null,
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 0.0,
+          "y": 0.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "file": "/images/flutter_interact/flutter-reaching-every-screen.png",
+          "tint": null,
+          "evict": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "image",
+          "fit": "contain",
+          "asset": null,
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 0.0,
+          "y": 0.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
           "file": "/images/flutter_interact/canvas_for_creative_expression.png",
           "tint": null,
           "evict": false
@@ -1603,7 +1988,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1643,7 +2028,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1683,7 +2068,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1758,8 +2143,8 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
-          "y": 0.0,
+          "x": 100.0,
+          "y": 200.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
@@ -1798,7 +2183,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1838,8 +2223,8 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
-          "y": 0.0,
+          "x": 100.0,
+          "y": 200.0,
           "editor_title": null,
           "advancement_step": 0,
           "animation": {
@@ -1878,7 +2263,7 @@
           "text_align": "start",
           "width": 1920.0,
           "height": 1080.0,
-          "x": 0.0,
+          "x": 100.0,
           "y": 0.0,
           "editor_title": null,
           "advancement_step": 0,
@@ -1972,6 +2357,46 @@
           },
           "font_family": "",
           "align": "centerLeft",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
+      "bg_color": "0XFF000000",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "[end]",
+          "font_size": 60,
+          "font_color": "0XFFFFFFFF",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "center",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": -100.0,
+          "y": -100.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "bottomRight",
           "italic": false,
           "strike_through": false
         }

@@ -60,9 +60,16 @@ class _LabelContentEditorState extends State<LabelContentEditor>
                 focusNode: FocusNode(onKey: (node, event) {
                   if (event.data is RawKeyEventDataMacOs) {
                     final data = event.data as RawKeyEventDataMacOs;
-                    if (event.isMetaPressed && data.keyCode == 36) {
-                      node.unfocus();
-                      widget.onUpdated();
+                    if (data.keyCode == 36) {
+                      if (event.isMetaPressed) {
+                        textController.value = textController.value
+                            .copyWith(text: textController.value.text + '\n');
+                        textController.selection = TextSelection.collapsed(
+                            offset: textController.text.length);
+                      } else {
+                        node.unfocus();
+                        widget.onUpdated();
+                      }
                     }
                   }
                   return true;

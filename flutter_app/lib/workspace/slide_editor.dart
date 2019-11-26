@@ -216,9 +216,16 @@ class _SlideEditorState extends State<SlideEditor> {
                 focusNode: FocusNode(onKey: (node, event) {
                   if (event.data is RawKeyEventDataMacOs) {
                     final data = event.data as RawKeyEventDataMacOs;
-                    if (event.isMetaPressed && data.keyCode == 36) {
-                      node.unfocus();
-                      update();
+                    if (data.keyCode == 36) {
+                      if (event.isMetaPressed) {
+                        notesController.value = notesController.value
+                            .copyWith(text: notesController.value.text + '\n');
+                        notesController.selection = TextSelection.collapsed(
+                            offset: notesController.text.length);
+                      } else {
+                        node.unfocus();
+                        update();
+                      }
                     }
                   }
                   return true;
