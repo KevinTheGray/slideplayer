@@ -1,0 +1,120 @@
+{
+  "presentation_metadata": {
+    "title": "Test Presentation",
+    "description": "A simple test presentation to validate I can load different presentations.",
+    "slide_height": 1080.0,
+    "slide_width": 1920.0,
+    "font_scale_factor": 1920.0,
+    "animate_slide_transitions": false,
+    "project_bg_color": "0xFFF0F0F0",
+    "project_slide_list_bg_color": "0xFFDDDDDD",
+    "project_slide_list_highlight_color": "0xFF40C4FF",
+    "show_debug_containers": false,
+    "auto_advance": false,
+    "auto_advance_duration_millis": 500
+  },
+  "replace_values": {
+    "jumbo_slide_align": "\"center\"",
+    "jumbo_slide_font_color": "\"0xFF1B364F\"",
+    "jumbo_slide_font_size": 100.0,
+    "jumbo_slide_letter_spacing": 1.44,
+    "jumbo_slide_line_height": 0.9,
+    "jumbo_slide_text_align": "\"center\""
+  },
+  "slides": [
+    {
+      "bg_color": "0XFF241E30",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "asset": "assets/flare/Robot.nma",
+          "animation_name": "Flight",
+          "type": "nima_actor",
+          "width": 540.0,
+          "height": 540.0,
+          "x": 690.0,
+          "y": 270.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "bg_color": "#FFFFFFFF",
+      "content": []
+    },
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "asset": "assets/flare/Robot.nma",
+          "animation_name": "Flight",
+          "type": "nima_actor",
+          "width": 540.0,
+          "height": 540.0,
+          "x": 690.0,
+          "y": 270.0
+        },
+        {
+          "type": "flare_actor",
+          "asset": "assets/flare/Flare Logo.flr",
+          "animation_name": "Untitled",
+          "width": 540.0,
+          "height": 540.0,
+          "x": 690.0,
+          "y": 270.0
+        },
+        {
+          "type": "label",
+          "text": "Label Content",
+          "font_size": 120.0,
+          "font_color": "#0175C2FF",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "center",
+          "width": 540.0,
+          "height": 540.0,
+          "x": 690.0,
+          "y": 270.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "center",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    }
+  ]
+}

@@ -16,12 +16,10 @@ class _AddContentTypeScreenState extends State<AddContentTypeScreen> {
   @override
   Widget build(BuildContext context) {
     final positioning = {
-      'width': loadedSlides.presentationMetadata.slideHeight / 2.0,
-      'height': loadedSlides.presentationMetadata.slideHeight / 2.0,
-      'x': loadedSlides.presentationMetadata.slideWidth / 2.0 -
-          loadedSlides.presentationMetadata.slideHeight / 4.0,
-      'y': loadedSlides.presentationMetadata.slideHeight / 2.0 -
-          loadedSlides.presentationMetadata.slideHeight / 4.0,
+      'width': loadedSlides.presentationMetadata.slideWidth,
+      'height': loadedSlides.presentationMetadata.slideHeight,
+      'x': 0.0,
+      'y': 0.0,
     };
     return AnimatedBuilder(
       animation: selectedType,

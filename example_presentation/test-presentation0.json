@@ -1,0 +1,42 @@
+{
+  "presentation_metadata": {
+    "title": "Test Presentation",
+    "description": "A simple test presentation to validate I can load different presentations.",
+    "slide_height": 1080.0,
+    "slide_width": 1920.0,
+    "font_scale_factor": 1920.0,
+    "animate_slide_transitions": false,
+    "project_bg_color": "0xFFF0F0F0",
+    "project_slide_list_bg_color": "0xFFDDDDDD",
+    "project_slide_list_highlight_color": "0xFF40C4FF",
+    "show_debug_containers": false,
+    "auto_advance": false,
+    "auto_advance_duration_millis": 500
+  },
+  "replace_values": {
+    "jumbo_slide_align": "\"center\"",
+    "jumbo_slide_font_color": "\"0xFF1B364F\"",
+    "jumbo_slide_font_size": 100.0,
+    "jumbo_slide_letter_spacing": 1.44,
+    "jumbo_slide_line_height": 0.9,
+    "jumbo_slide_text_align": "\"center\""
+  },
+  "slides": [
+    {
+      "bg_color": "0XFFFFFFFF",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "hellofsdafhdskjalhfdjksalhfjkdlshafjkldhsajkflhdsjkalhfdjkslahfjkdlshafjkldhsakjlfhdsjaklfhdjkslahfdlshafdfdhsakjfhdjkslahfjkdlhsajkflhdjksalhfjdlkshafjkldhsajklfhdjsklahfjkdlshafjkldhsjaklfhdjsklahfjdklshafjlkdhsajkflhdjsklahfjdklshafjkdshjaklfhdjsklahfjdklsahjfkldhsajklfhdjsklahfjdklsahjfkldhsajkflhdsjaklfhjdkslahfjkdshajkflhdjsklahfjkdsahfjkdshajkfldhsajklfhdjksahfjldhsajkfhdsalfhdjsalhfjdlsahfjkdlshfjkdshafjkldhsfjldshajkflhdajkfhdjslahfjdsklahfjkdlshajflhdsjaklfhjdlksgjkfdsah;fjkdsajfkl;djskal;fjdksla;dfsafjl;dsajfklhdsakjfhdjkslahfjkdlshafjkldhsjaklfhdjskalhfjdklsahfjkdlshajfhdsjaklfhdjkslahfjdlsahjfdlshajfldhsajlfhdjsalkfhdjkslahfjkdlshafjkdshajkfksdajfkdhsajklfhdjsklahfjdklshafjkldhsjaklfhdjkslahfjkldhkfjdsklahfjkldshafhdjsalhfjlkdsahjlfdhsjalfdhjsklahfjkldshafjkldhsajfhdjklsahfjdklsahjfkdlsahjdlahjdklfashjfkldsahfjldk",
+      "content": [
+        {
+          "type": "rect",
+          "x": 0.0,
+          "y": 0.0,
+          "height": 1080.0,
+          "width": 1920.0,
+          "fill": "#BFE6F3ff"
+        }
+      ]
+    }
+  ]
+}

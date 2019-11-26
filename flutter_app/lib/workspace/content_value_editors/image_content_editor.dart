@@ -59,6 +59,7 @@ class _ImageContentEditorState extends State<ImageContentEditor>
                   file_chooser.showOpenPanel((result, files) {
                     if (files?.isNotEmpty ?? false) {
                       String filePath = files.first;
+                      print(externalFilesRoot);
                       if (filePath.startsWith(externalFilesRoot)) {
                         final newPath = filePath.split(externalFilesRoot)[1];
                         fileController.value = TextEditingValue(text: newPath);
