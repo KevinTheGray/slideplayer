@@ -22,11 +22,14 @@ class SlidePageController {
     }
     return false;
   }
+
+  int get advancementCount => listener?.getAdvancementCount() ?? 0;
 }
 
 abstract class _SlidePageControllerListener {
   bool onAdvanceSlideContent();
   bool onReverseSlideContent();
+  int getAdvancementCount();
 }
 
 class SlidePage extends StatefulWidget {
@@ -186,6 +189,9 @@ class SlidePageState extends State<SlidePage>
       return true;
     }
   }
+
+  @override
+  int getAdvancementCount() => _slideAdvancementCount;
 }
 
 class _SlidePageScaledPositioned extends StatelessWidget {

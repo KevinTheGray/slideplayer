@@ -43,7 +43,7 @@ class _SlideEditorState extends State<SlideEditor> {
   Widget build(BuildContext context) {
     bgColorController.text = widget.slide.backgroundColor.toHexString();
     advCountController.text = widget.slide.advancementCount.toString();
-    notesController.text = widget.slide.notes;
+    notesController.text = widget.slide.notes[0];
     animatedTransitionState = widget.slide.animatedTransition;
     currentContentState = widget.slide.content;
 
@@ -225,6 +225,26 @@ class _SlideEditorState extends State<SlideEditor> {
                       } else {
                         node.unfocus();
                         update();
+                      }
+                    } else if (data.keyCode == 9) {
+                      if (event.isMetaPressed) {
+                        (Clipboard.getData('text/plain')).then((val) {
+                          if (val != null && val.text != null) {
+                            print(val.text);
+                            notesController.value = TextEditingValue(
+                                text: notesController.value.text + val.text);
+                            notesController.selection = TextSelection.collapsed(
+                                offset: notesController.text.length);
+                          }
+                        });
+                      }
+                    } else if (data.keyCode == 8) {
+                      if (event.isMetaPressed) {
+                        final String text = notesController.selection
+                            .textInside(notesController.text);
+                        if (text.length > 0) {
+                          Clipboard.setData(ClipboardData(text: text));
+                        }
                       }
                     }
                   }

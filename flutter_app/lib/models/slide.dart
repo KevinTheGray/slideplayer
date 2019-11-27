@@ -7,7 +7,7 @@ class Slide {
   final Color backgroundColor;
   final SlideFactors slideFactors;
   final bool animatedTransition;
-  final String notes;
+  final List<dynamic> notes;
 
   Slide({
     @required this.content,

@@ -24,7 +24,7 @@
       "bg_color": "0XFF000000",
       "advancement_count": 0,
       "animated_transition": false,
-      "notes": "",
+      "notes": "So thank you Matias! It’s great to be here for Flutter Interact this year. Our goal this year is to highlight the creative expressivity of Flutter as a platform for interactive content. We want to give you a sense of the range of its capabilities as a tool for designers, developers, creative coders -- whatever you call yourself, if you care about building beautiful native experiences for any device that displays pixels, we want Flutter to be a canvas for you.",
       "content": [
         {
           "type": "label",
@@ -359,7 +359,14 @@
       "bg_color": "0XFFFFFFFF",
       "advancement_count": 5,
       "animated_transition": false,
-      "notes": "",
+      "notes": [
+        "This is the four pillars.",
+        "Beautiful.",
+        "Fast.",
+        "Productive.",
+        "Open.",
+        "And we're back."
+      ],
       "content": [
         {
           "type": "flutter_pillars",

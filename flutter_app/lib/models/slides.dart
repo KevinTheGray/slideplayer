@@ -164,7 +164,14 @@ class FlutterSlidesModel extends Model {
         bool animatedTransition = slide['animated_transition'] ?? false;
         Color slideBGColor =
             ColorUtils.colorFromString(slide['bg_color'] ?? '0xFFFFFFFF');
-        String notes = slide['notes'] ?? '';
+        List<dynamic> notes = [];
+        if (slide['notes'] != null) {
+          if (slide['notes'] is String) {
+            notes = [slide['notes']];
+          } else {
+            notes = slide['notes'];
+          }
+        }
         slideList.add(
           Slide(
             content: contentList,

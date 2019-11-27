@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter_slides/models/presentation_loaders/file_system_presentation_loader.dart';
+import 'package:flutter_slides/models/slide.dart';
 import 'package:flutter_slides/models/slides.dart';
 import 'package:flutter_slides/plugins/notes_plugin.dart';
 import 'package:flutter_slides/slides/slide_page.dart';
@@ -156,8 +157,7 @@ class _SlidePresentationState extends State<SlidePresentation>
             animatedTransition =
                 model.slides[_currentSlideIndex].animatedTransition ||
                     model.presentationMetadata.animateSlideTransitions;
-            final slide = model.slides[_currentSlideIndex];
-            updateNotes(slide.notes);
+            updateNotesWindow();
           }
           return Container(
             color: model.presentationMetadata.projectBGColor,
@@ -541,6 +541,7 @@ class _SlidePresentationState extends State<SlidePresentation>
         _moveToSlideAtIndex(model, _currentSlideIndex + 1);
       }
     }
+    updateNotesWindow();
   }
 
   void _reversePresentation(FlutterSlidesModel model) {
@@ -585,6 +586,17 @@ class _SlidePresentationState extends State<SlidePresentation>
       _transitionEndIndex = nextIndex;
       _currentSlideIndex = nextIndex;
     });
+  }
+
+  void updateNotesWindow() {
+    final slide = loadedSlides.slides[_currentSlideIndex];
+    String notes;
+    if (_slidePageController.advancementCount < slide.notes.length) {
+      notes = slide.notes[_slidePageController.advancementCount] ?? '';
+    } else {
+      notes = slide.notes.last ?? '';
+    }
+    updateNotes(notes);
   }
 }
 
