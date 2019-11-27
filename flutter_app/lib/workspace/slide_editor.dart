@@ -31,7 +31,7 @@ class SlideEditor extends StatefulWidget {
 class _SlideEditorState extends State<SlideEditor> {
   TextEditingController bgColorController = TextEditingController();
   TextEditingController advCountController = TextEditingController();
-  TextEditingController notesController = TextEditingController();
+  List<TextEditingController> notesControllers = [];
   bool animatedTransitionState;
   List<dynamic> currentContentState;
   @override
@@ -43,9 +43,13 @@ class _SlideEditorState extends State<SlideEditor> {
   Widget build(BuildContext context) {
     bgColorController.text = widget.slide.backgroundColor.toHexString();
     advCountController.text = widget.slide.advancementCount.toString();
-    notesController.text = widget.slide.notes[0];
     animatedTransitionState = widget.slide.animatedTransition;
     currentContentState = widget.slide.content;
+    notesControllers.clear();
+    final List notes = widget.slide.notes;
+    for (int i = 0; i < widget.slide.notes.length; i++) {
+      notesControllers.add(TextEditingController(text: notes[i]));
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,56 +211,114 @@ class _SlideEditorState extends State<SlideEditor> {
             )
           ],
         ),
-        ExpansionTile(
-          title: Text('Notes:'),
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 30.0),
-              child: TextField(
-                focusNode: FocusNode(onKey: (node, event) {
-                  if (event.data is RawKeyEventDataMacOs) {
-                    final data = event.data as RawKeyEventDataMacOs;
-                    if (data.keyCode == 36) {
-                      if (event.isMetaPressed) {
-                        notesController.value = notesController.value
-                            .copyWith(text: notesController.value.text + '\n');
-                        notesController.selection = TextSelection.collapsed(
-                            offset: notesController.text.length);
-                      } else {
-                        node.unfocus();
-                        update();
-                      }
-                    } else if (data.keyCode == 9) {
-                      if (event.isMetaPressed) {
-                        (Clipboard.getData('text/plain')).then((val) {
-                          if (val != null && val.text != null) {
-                            print(val.text);
-                            notesController.value = TextEditingValue(
-                                text: notesController.value.text + val.text);
-                            notesController.selection = TextSelection.collapsed(
-                                offset: notesController.text.length);
-                          }
-                        });
-                      }
-                    } else if (data.keyCode == 8) {
-                      if (event.isMetaPressed) {
-                        final String text = notesController.selection
-                            .textInside(notesController.text);
-                        if (text.length > 0) {
-                          Clipboard.setData(ClipboardData(text: text));
+        ExpansionTile(title: Text('Notes:'), children: [
+          Container(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(),
+                ),
+                Container(
+                  height: 40.0,
+                  child: MaterialButton(
+                    onPressed: () async {
+                      notesControllers.add(TextEditingController());
+                      update();
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.add,
+                          color: Colors.lightBlueAccent,
+                        ),
+                        Text('Add'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ...List<Widget>.generate(
+            notesControllers.length,
+            (i) {
+              return buildNotesField(notesControllers[i], onDelete: () {
+                notesControllers.removeAt(i);
+                update();
+              });
+            },
+          ),
+        ]),
+      ],
+    );
+  }
+
+  Widget buildNotesField(
+    TextEditingController notesController, {
+    @required VoidCallback onDelete,
+  }) {
+    return Padding(
+      padding: EdgeInsets.only(left: 30.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: TextField(
+              focusNode: FocusNode(onKey: (node, event) {
+                if (event.data is RawKeyEventDataMacOs) {
+                  final data = event.data as RawKeyEventDataMacOs;
+                  if (data.keyCode == 36) {
+                    if (event.isMetaPressed) {
+                      notesController.value = notesController.value
+                          .copyWith(text: notesController.value.text + '\n');
+                      notesController.selection = TextSelection.collapsed(
+                          offset: notesController.text.length);
+                    } else {
+                      node.unfocus();
+                      update();
+                    }
+                  } else if (data.keyCode == 9) {
+                    if (event.isMetaPressed) {
+                      (Clipboard.getData('text/plain')).then((val) {
+                        if (val != null && val.text != null) {
+                          print(val.text);
+                          notesController.value = TextEditingValue(
+                              text: notesController.value.text + val.text);
+                          notesController.selection = TextSelection.collapsed(
+                              offset: notesController.text.length);
                         }
+                      });
+                    }
+                  } else if (data.keyCode == 8) {
+                    if (event.isMetaPressed) {
+                      final String text = notesController.selection
+                          .textInside(notesController.text);
+                      if (text.length > 0) {
+                        Clipboard.setData(ClipboardData(text: text));
                       }
                     }
                   }
-                  return true;
-                }),
-                controller: notesController,
-                maxLines: null,
+                }
+                return true;
+              }),
+              controller: notesController,
+              maxLines: null,
+            ),
+          ),
+          Container(
+            height: 40.0,
+            width: 40.0,
+            child: MaterialButton(
+              onPressed: () async {
+                onDelete();
+              },
+              child: Icon(
+                Icons.delete,
+                color: Colors.redAccent,
               ),
             ),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -265,7 +327,8 @@ class _SlideEditorState extends State<SlideEditor> {
       "bg_color": "${bgColorController.value.text}",
       'advancement_count': int.tryParse(advCountController.value.text) ?? 0,
       'animated_transition': animatedTransitionState,
-      'notes': notesController.value.text,
+      'notes': List<String>.generate(
+          notesControllers.length, (i) => notesControllers[i].text),
       "content": currentContentState,
     });
   }
