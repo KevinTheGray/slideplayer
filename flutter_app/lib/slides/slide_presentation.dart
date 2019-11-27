@@ -1,16 +1,19 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'package:flutter_slides/models/presentation_loaders/file_system_presentation_loader.dart';
 import 'package:flutter_slides/models/slides.dart';
 import 'package:flutter_slides/plugins/notes_plugin.dart';
 import 'package:flutter_slides/slides/slide_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_slides/workspace/help_screen.dart';
 import 'package:flutter_slides/workspace/load_presentation_screen.dart';
 import 'package:flutter_slides/workspace/slide_editor.dart';
 import 'package:menubar/menubar.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:file_chooser/file_chooser.dart' as file_chooser;
 
 class SlidePresentation extends StatefulWidget {
   @override
@@ -58,7 +61,13 @@ class _SlidePresentationState extends State<SlidePresentation>
         MenuItem(
           label: 'Open',
           onClicked: () {
-            Navigator.pushNamed(context, '/load_new_presentation');
+//            Navigator.pushNamed(context, '/load_new_presentation');
+            file_chooser.showOpenPanel((result, paths) {
+              if (paths != null) {
+                loadPresentation(FileSystemPresentationLoader(paths.first));
+                Navigator.of(context).popUntil(ModalRoute.withName('/'));
+              }
+            }, allowsMultipleSelection: false);
           },
         ),
         MenuItem(
@@ -77,6 +86,19 @@ class _SlidePresentationState extends State<SlidePresentation>
           label: 'Show Notes',
           onClicked: () {
             showNoteWindow();
+          },
+        ),
+        MenuItem(
+          label: 'Help',
+          onClicked: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return Dialog(
+                  child: HelpScreen(),
+                );
+              },
+            );
           },
         ),
       ]),
@@ -426,7 +448,7 @@ class _SlidePresentationState extends State<SlidePresentation>
         final RawKeyEventDataMacOs data = event.data;
         if (event.isMetaPressed) {}
         keyCode = data.keyCode;
-//        print(keyCode);
+        print(keyCode);
         if (keyCode == 33) {
           if (_slideListController?.status == AnimationStatus.forward ||
               _slideListController?.status == AnimationStatus.completed) {
@@ -479,6 +501,28 @@ class _SlidePresentationState extends State<SlidePresentation>
         } else if (keyCode == 1) {
           if (event.isMetaPressed) {
             model.saveCurrent();
+          }
+        } else if (keyCode == 2) {
+          if (event.isMetaPressed) {
+            if (model.slides.length == 0) {
+              return;
+            }
+            final duplicate = model.slides[_currentSlideIndex];
+            if (model.slides.length == 0) {
+              _currentSlideIndex = 0;
+            } else {
+              _currentSlideIndex = _currentSlideIndex + 1;
+            }
+            model.addSlide(
+              {
+                "bg_color": "${duplicate.backgroundColor.toHexString()}",
+                'advancement_count': duplicate.advancementCount,
+                'animated_transition': duplicate.animatedTransition,
+                'notes': duplicate.notes,
+                "content": duplicate.content,
+              },
+              index: _currentSlideIndex,
+            );
           }
         }
         break;

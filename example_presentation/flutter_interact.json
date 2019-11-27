@@ -21,6 +21,46 @@
   },
   "slides": [
     {
+      "bg_color": "0XFF000000",
+      "advancement_count": 0,
+      "animated_transition": false,
+      "notes": "",
+      "content": [
+        {
+          "type": "label",
+          "text": "Set context [5m]",
+          "font_size": 60,
+          "font_color": "0XFFFFFFFF",
+          "line_height": 1.0,
+          "letter_spacing": 1.0,
+          "text_align": "center",
+          "width": 1920.0,
+          "height": 1080.0,
+          "x": 100.0,
+          "y": -100.0,
+          "editor_title": null,
+          "advancement_step": 0,
+          "animation": {
+            "curve": "",
+            "duration_in_milliseconds": 0,
+            "delay_in_milliseconds": 0,
+            "offset_x": 0,
+            "offset_y": 0,
+            "scale_start": 1.0,
+            "scale_end": 1.0,
+            "scale_align": "center",
+            "opacity_start": 1.0,
+            "opacity_end": 1.0,
+            "rotation": 0.0
+          },
+          "font_family": "",
+          "align": "bottomLeft",
+          "italic": false,
+          "strike_through": false
+        }
+      ]
+    },
+    {
       "bg_color": "0XFF041E3C",
       "advancement_count": 0,
       "animated_transition": false,

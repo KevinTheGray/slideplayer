@@ -42,23 +42,24 @@ class LoadPresentationScreen extends StatelessWidget {
                   }, allowsMultipleSelection: false);
                 },
                 child: Text(
-                  'Load Presentation from Disk',
+//                  'Load Presentation from Disk',
+                  'Load Presentation',
                   style: TextStyle(color: Colors.white, fontSize: 24.0),
                 ),
               ),
-              Divider(
-                height: 34.0,
-                thickness: 4.0,
-                color: Color(0xFFAAAAAA),
-              ),
-              Text(
-                "Firebase Projects",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 24.0),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 15.0),
-              ),
+//              Divider(
+//                height: 34.0,
+//                thickness: 4.0,
+//                color: Color(0xFFAAAAAA),
+//              ),
+//              Text(
+//                "Firebase Projects",
+//                textAlign: TextAlign.center,
+//                style: TextStyle(fontSize: 24.0),
+//              ),
+//              Padding(
+//                padding: EdgeInsets.only(top: 15.0),
+//              ),
 //              StreamBuilder<Event>(
 //                stream: FirebaseDatabase.instance
 //                    .reference()

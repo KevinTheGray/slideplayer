@@ -70,6 +70,26 @@ class _LabelContentEditorState extends State<LabelContentEditor>
                         node.unfocus();
                         widget.onUpdated();
                       }
+                    } else if (data.keyCode == 9) {
+                      if (event.isMetaPressed) {
+                        (Clipboard.getData('text/plain')).then((val) {
+                          if (val != null && val.text != null) {
+                            print(val.text);
+                            textController.value = TextEditingValue(
+                                text: textController.value.text + val.text);
+                            textController.selection = TextSelection.collapsed(
+                                offset: textController.text.length);
+                          }
+                        });
+                      }
+                    } else if (data.keyCode == 8) {
+                      if (event.isMetaPressed) {
+                        final String text = textController.selection
+                            .textInside(textController.text);
+                        if (text.length > 0) {
+                          Clipboard.setData(ClipboardData(text: text));
+                        }
+                      }
                     }
                   }
                   return true;
@@ -104,8 +124,7 @@ class _LabelContentEditorState extends State<LabelContentEditor>
                     },
                   );
                   if (result != null) {
-                    fontColorController.value =
-                        TextEditingValue(text: result);
+                    fontColorController.value = TextEditingValue(text: result);
                     widget.onUpdated();
                   }
                 },
