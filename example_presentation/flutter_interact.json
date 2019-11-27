@@ -24,7 +24,7 @@
       "bg_color": "0XFF000000",
       "advancement_count": 0,
       "animated_transition": false,
-      "notes": [],
+      "notes": "",
       "content": [
         {
           "type": "label",
@@ -319,9 +319,7 @@
       "bg_color": "0XFFFFFFFF",
       "advancement_count": 0,
       "animated_transition": false,
-      "notes": [
-        "hello\n\nthis is a note"
-      ],
+      "notes": "",
       "content": [
         {
           "type": "label",
@@ -362,12 +360,8 @@
       "advancement_count": 5,
       "animated_transition": false,
       "notes": [
-        "This is the four pillars.",
-        "Beautiful.",
-        "Fast.",
-        "Productive.",
-        "Open.",
-        "And we're back."
+        "The four pillars of Flutter.",
+        "Beautiful."
       ],
       "content": [
         {
@@ -1232,7 +1226,10 @@
       "bg_color": "0XFFFFFFFF",
       "advancement_count": 0,
       "animated_transition": false,
-      "notes": "",
+      "notes": [
+        "hi",
+        "bye"
+      ],
       "content": [
         {
           "type": "image",

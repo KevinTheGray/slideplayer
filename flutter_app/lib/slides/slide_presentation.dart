@@ -590,12 +590,12 @@ class _SlidePresentationState extends State<SlidePresentation>
 
   void updateNotesWindow() {
     final slide = loadedSlides.slides[_currentSlideIndex];
-    String notes = '';
+    String notes = slide.notes.length > 0 ? slide.notes.last : '';
     if (_slidePageController.advancementCount < slide.notes.length) {
       notes = slide.notes[_slidePageController.advancementCount] ?? '';
-    } else if (notes.isNotEmpty) {
-      notes = slide.notes.last ?? '';
     }
+    print(slide.notes);
+    print(notes);
     updateNotes(notes);
   }
 }
