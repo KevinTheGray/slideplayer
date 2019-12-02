@@ -594,8 +594,6 @@ class _SlidePresentationState extends State<SlidePresentation>
     if (_slidePageController.advancementCount < slide.notes.length) {
       notes = slide.notes[_slidePageController.advancementCount] ?? '';
     }
-    print(slide.notes);
-    print(notes);
     updateNotes(notes);
   }
 }
