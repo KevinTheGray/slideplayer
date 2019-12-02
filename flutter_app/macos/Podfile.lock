@@ -2,6 +2,7 @@ PODS:
   - file_chooser (0.0.2):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
+  - MarkdownKit (1.5)
   - menubar (0.0.2):
     - FlutterMacOS
   - shared_preferences_fde (0.0.1):
@@ -10,8 +11,13 @@ PODS:
 DEPENDENCIES:
   - file_chooser (from `Flutter/ephemeral/.symlinks/plugins/file_chooser/macos`)
   - FlutterMacOS (from `Flutter/ephemeral/.symlinks/flutter/darwin-x64`)
+  - MarkdownKit
   - menubar (from `Flutter/ephemeral/.symlinks/plugins/menubar/macos`)
   - shared_preferences_fde (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_fde/macos`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - MarkdownKit
 
 EXTERNAL SOURCES:
   file_chooser:
@@ -26,9 +32,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   file_chooser: 24432cf5dc836722b05c11c2a0a30d19c3c9b996
   FlutterMacOS: 15bea8a44d2fa024068daa0140371c020b4b6ff9
+  MarkdownKit: 379028e9cd3ebf05ccac87205cd9aead446159d4
   menubar: 4e3d461d62d775540277ce6639acafe2a111a231
   shared_preferences_fde: 71710025ac76ed132b9a27108b3ec0816f3a7dbb
 
-PODFILE CHECKSUM: 6c16b983eaf141b26e283603ae912ad94a552cca
+PODFILE CHECKSUM: 880d809e5e8610f98b10a111647330e264b06fde
 
 COCOAPODS: 1.7.1
